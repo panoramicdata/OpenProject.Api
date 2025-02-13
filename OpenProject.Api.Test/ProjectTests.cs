@@ -15,6 +15,22 @@ public class ProjectTests(
 	}
 
 	[Fact]
+	public async Task GetAsync_Succeeds()
+	{
+		var response = await OpenProjectClient
+			.Projects
+			.GetAllAsync(default);
+
+		foreach (var project in response.Embedded.Elements)
+		{
+			// Get
+			var projectRefetch = await OpenProjectClient
+				.Projects
+				.GetAsync(project.Id, default);
+		}
+	}
+
+	[Fact]
 	public async Task GetStatusAsync_Succeeds()
 	{
 		var response = await OpenProjectClient
