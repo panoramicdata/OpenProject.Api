@@ -1,0 +1,17 @@
+Help
+obj
+bin
+lib
+packages
+*.nupkg
+/.vs
+/LogicMonitor.Api.Test/appsettings.json
+/LogicMonitor.Api.tss
+/UpgradeLog2.htm
+/LogicMonitor.Api.Test/AppSettings.config
+/LogicMonitor.Api.Test/ProjectScripts/LookingPoint/LookingPoint Data.xlsx
+/LogicMonitor.Api.Test/ProjectScripts/LookingPoint/All Devices.xlsx
+/LogicMonitor.Api/nuget-api-key.txt
+/LogicMonitor.Api.Test.Old/appsettings.json
+/LogicMonitor.Api.Help/html
+appsettings.json

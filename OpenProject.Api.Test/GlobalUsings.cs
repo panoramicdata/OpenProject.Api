@@ -1,0 +1,12 @@
+﻿global using OpenProject.Api.Data;
+global using OpenProject.Api.Test.Config;
+global using FluentAssertions;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Threading;
+global using Xunit;
+global using Xunit.Abstractions;
