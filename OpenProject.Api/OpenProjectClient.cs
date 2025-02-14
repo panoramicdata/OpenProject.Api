@@ -23,18 +23,7 @@ public class OpenProjectClient : IDisposable
 		_httpClient = client;
 		_refitSettings = new RefitSettings
 		{
-			//ContentSerializer = new NewtonsoftJsonContentSerializer(
-			//	new JsonSerializerSettings
-			//	{
-			//		// By default nulls should not be rendered out, this will allow the receiving API to apply any defaults.
-			//		// Use [JsonProperty(NullValueHandling = NullValueHandling.Include)] to send
-			//		// nulls for specific properties, e.g. disassociating port schedule ids from a port
-			//		NullValueHandling = NullValueHandling.Ignore,
-			//	#if DEBUG
-			//		MissingMemberHandling = MissingMemberHandling.Error,
-			//	#endif
-			//		Converters = new List<JsonConverter> { new StringEnumConverter() }
-			//	})
+			//UrlParameterFormatter = new OpenProjectUrlParameterFormatter(),
 		};
 
 		Principals = RefitFor(Principals!);
@@ -44,6 +33,7 @@ public class OpenProjectClient : IDisposable
 		Users = RefitFor(Users!);
 		UserGroups = RefitFor(UserGroups!);
 		UserGroupMemberships = RefitFor(UserGroupMemberships!);
+		WorkPackages = RefitFor(WorkPackages!);
 		WorkPackageTypes = RefitFor(WorkPackageTypes!);
 	}
 
@@ -74,6 +64,9 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc>/>
 	public IUserGroupMemberships UserGroupMemberships { get; }
+
+	/// <inheritdoc />
+	public IWorkPackages WorkPackages { get; }
 
 	/// <inheritdoc />
 	public IWorkPackageTypes WorkPackageTypes { get; }

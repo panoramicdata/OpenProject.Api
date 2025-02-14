@@ -2,5 +2,7 @@
 
 public class Embedded<T> where T : IdentifiedItemBase
 {
-	public required IReadOnlyCollection<T> Elements { get; set; }
+	public IReadOnlyCollection<T>? Elements { get; set; }
+
+	public ErrorDetails? ErrorDetails { get; set; }
 }

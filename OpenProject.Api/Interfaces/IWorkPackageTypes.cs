@@ -1,4 +1,6 @@
-﻿namespace OpenProject.Api.Interfaces;
+﻿using OpenProject.Api.Queries;
+
+namespace OpenProject.Api.Interfaces;
 
 /// <summary>
 /// Project Category endpoints
@@ -13,5 +15,15 @@ public interface IWorkPackageTypes
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/types")]
 	Task<OpenProjectItemSet<WorkPackageType>> GetAllAsync(
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Get project status
+	/// </summary>
+	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <returns>Task of ProjectStatusModel</returns>
+	[Get("/types")]
+	Task<OpenProjectItemSet<WorkPackageType>> GetAsync(
+		[Query] Filters filters,
 		CancellationToken cancellationToken);
 }
