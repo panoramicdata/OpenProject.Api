@@ -44,4 +44,14 @@ public interface IProjects
 	Task DeleteAsync(
 		int id,
 		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Gets all project available assignees
+	/// </summary>
+	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <returns>Task of ProjectModel</returns>
+	[Get("/projects/{id}/available_assignees")]
+	Task<OpenProjectItemSet<User>> GetAvailableAssigneesAsync(
+		int id,
+		CancellationToken cancellationToken);
 }

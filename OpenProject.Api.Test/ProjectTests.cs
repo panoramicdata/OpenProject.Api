@@ -7,22 +7,25 @@ public class ProjectTests(
 	[Fact]
 	public async Task GetAllAsync_Succeeds()
 	{
-		var projects = await OpenProjectClient
+		var items = await OpenProjectClient
 			.Projects
 			.GetAllAsync(default);
 
-		projects.Should().NotBeNull();
-		projects.Embedded.Should().NotBeNull();
+		items.Should().NotBeNull();
+		items.Embedded.Should().NotBeNull();
 	}
 
 	[Fact]
 	public async Task GetAsync_Succeeds()
 	{
-		var response = await OpenProjectClient
+		var items = await OpenProjectClient
 			.Projects
 			.GetAllAsync(default);
 
-		foreach (var project in response.Embedded.Elements)
+		items.Should().NotBeNull();
+		items.Embedded.Should().NotBeNull();
+
+		foreach (var project in items.Embedded.Elements)
 		{
 			// Get
 			var projectRefetch = await OpenProjectClient
@@ -30,6 +33,27 @@ public class ProjectTests(
 				.GetAsync(project.Id, default);
 
 			projectRefetch.Should().NotBeNull();
+		}
+	}
+
+	[Fact]
+	public async Task GetAvailableAssigneesAsync_Succeeds()
+	{
+		var items = await OpenProjectClient
+			.Projects
+			.GetAllAsync(default);
+
+		items.Should().NotBeNull();
+		items.Embedded.Should().NotBeNull();
+
+		foreach (var item in items.Embedded.Elements)
+		{
+			// Get
+			var availableAssignees = await OpenProjectClient
+				.Projects
+				.GetAvailableAssigneesAsync(item.Id, default);
+
+			availableAssignees.Should().NotBeNull();
 		}
 	}
 }
