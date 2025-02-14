@@ -2,7 +2,7 @@
 
 namespace OpenProject.Api.Data;
 
-public class CollectionModel<T> where T : IdentifiedItemModelBase
+public class OpenProjectItemSet<T> where T : IdentifiedItemBase
 {
 	[JsonPropertyName("_type")]
 	public required string Type { get; set; }

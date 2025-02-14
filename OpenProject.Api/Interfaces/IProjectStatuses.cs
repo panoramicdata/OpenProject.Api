@@ -12,7 +12,7 @@ public interface IProjectStatuses
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/project_statuses/{projectId}")]
-	Task<ProjectStatusModel> GetAsync(
+	Task<ProjectStatus> GetAsync(
 		string projectId,
 		CancellationToken cancellationToken);
 }

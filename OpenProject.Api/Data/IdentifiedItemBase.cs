@@ -2,7 +2,7 @@
 
 namespace OpenProject.Api.Data;
 
-public abstract class IdentifiedItemModelBase
+public abstract class IdentifiedItemBase
 {
 	[JsonPropertyName("_type")]
 	public required string Type { get; set; }

@@ -12,8 +12,8 @@ public interface IProjects
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>
 	[Post("/projects")]
-	Task<ProjectModel> CreateAsync(
-		[Body] ProjectModel entity,
+	Task<Project> CreateAsync(
+		[Body] Project entity,
 		CancellationToken cancellationToken);
 
 	/// <summary>
@@ -22,7 +22,7 @@ public interface IProjects
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>
 	[Get("/projects/{id}")]
-	Task<ProjectModel> GetAsync(
+	Task<Project> GetAsync(
 		int id,
 		CancellationToken cancellationToken);
 
@@ -32,7 +32,7 @@ public interface IProjects
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>
 	[Get("/projects")]
-	Task<CollectionModel<ProjectModel>> GetAllAsync(
+	Task<OpenProjectItemSet<Project>> GetAllAsync(
 		CancellationToken cancellationToken);
 
 	/// <summary>

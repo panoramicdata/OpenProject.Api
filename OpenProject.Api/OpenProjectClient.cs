@@ -43,6 +43,7 @@ public class OpenProjectClient : IDisposable
 		Projects = RefitFor(Projects!);
 		ProjectCategories = RefitFor(ProjectCategories!);
 		ProjectStatuses = RefitFor(ProjectStatuses!);
+		WorkPackageTypes = RefitFor(WorkPackageTypes!);
 	}
 
 	private T RefitFor<T>(T _)
@@ -60,6 +61,9 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IProjectStatuses ProjectStatuses { get; }
+
+	/// <inheritdoc />
+	public IWorkPackageTypes WorkPackageTypes { get; }
 
 	public async Task<JObject?> GetJObjectAsync(string subUrl, CancellationToken cancellationToken)
 	{

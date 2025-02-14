@@ -2,17 +2,16 @@
 
 /// <summary>
 /// Project Category endpoints
-/// See https://www.openproject.org/docs/api/endpoints/categories/
+/// See https://www.openproject.org/docs/api/endpoints/types/
 /// </summary>
-public interface IProjectCategories
+public interface IWorkPackageTypes
 {
 	/// <summary>
 	/// Get project status
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
-	[Get("/categories/{projectId}")]
-	Task<OpenProjectItemSet<ProjectCategory>> GetForProjectAsync(
-		int projectId,
+	[Get("/types")]
+	Task<OpenProjectItemSet<WorkPackageType>> GetAllAsync(
 		CancellationToken cancellationToken);
 }
