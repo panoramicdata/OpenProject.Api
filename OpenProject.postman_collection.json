@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "dc6779b9-5832-47dc-a104-73b495ac62d5",
+		"name": "OpenProject",
+		"description": "See documentation here: [https://www.openproject.org/docs/api/](https://www.openproject.org/docs/api/)\n\nEndpoints are listed here: [https://www.openproject.org/docs/api/endpoints/](https://www.openproject.org/docs/api/endpoints/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "679045"
+	},
+	"item": [
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/projects",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/projects",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project Available Assignees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/projects",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project Categories",
+			"item": [
+				{
+					"name": "Get Project Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/categories/2",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"categories",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Work Package Types",
+			"item": [
+				{
+					"name": "Get Work Package Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/types",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"types"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project Statuses",
+			"item": [
+				{
+					"name": "Get Project Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/project_statuses/2",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"project_statuses",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Work Package Types",
+			"item": [
+				{
+					"name": "Get Project Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/project_statuses/2",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"project_statuses",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Groups",
+			"item": [
+				{
+					"name": "Get User Groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/groups",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/users",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/users/5",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Documents",
+			"item": [
+				{
+					"name": "Get Documents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/documents",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/users/5",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Work Packages",
+			"item": [
+				{
+					"name": "Get Work Packages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/documents",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/users/5",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Principals",
+			"item": [
+				{
+					"name": "Get Principals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/principals",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"principals"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Group Memberships",
+			"item": [
+				{
+					"name": "Get User Group Memberships",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{openproject_url}}/memberships",
+							"host": [
+								"{{openproject_url}}"
+							],
+							"path": [
+								"memberships"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{openproject_api_key}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "apikey",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
