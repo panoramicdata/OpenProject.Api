@@ -1,6 +1,6 @@
 ﻿namespace OpenProject.Api.Data;
 
 /// <summary>
-/// ProjectStatusModel
+/// Project Status
 /// </summary>
 public class ProjectStatus : NamedIdentifiedItem<string>;
