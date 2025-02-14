@@ -7,16 +7,6 @@ namespace OpenProject.Api.Interfaces;
 public interface IProjects
 {
 	/// <summary>
-	/// View project status
-	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
-	/// <returns>Task of ProjectStatusModel</returns>
-	[Post("/project_statuses/{id}")]
-	Task<ProjectStatusModel> GetStatusAsync(
-		int id,
-		CancellationToken cancellationToken);
-
-	/// <summary>
 	/// Create a project
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>

@@ -17,6 +17,7 @@ public class Fixture : TestBedFixture
 		}
 
 		services
+			.AddLogging(builder => builder.SetMinimumLevel(LogLevel.Debug))
 			.AddScoped<CancellationTokenSource>()
 			.Configure<AppSettings>(_configuration.GetSection("AppSettings")); ;
 	}

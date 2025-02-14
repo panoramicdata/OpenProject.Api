@@ -1,6 +1,6 @@
 ﻿namespace OpenProject.Api.Data;
 
-public abstract class NamedItemModel : ItemModel
+public abstract class NamedIdentifiedItemModel<T> : IdentifiedItemModel<T>
 {
 	public required string Name { get; set; }
 }

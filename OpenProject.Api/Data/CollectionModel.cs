@@ -2,10 +2,10 @@
 
 namespace OpenProject.Api.Data;
 
-public class CollectionModel<T> where T : ItemModel
+public class CollectionModel<T> where T : IdentifiedItemModelBase
 {
 	[JsonPropertyName("_type")]
-	public string Type { get; set; }
+	public required string Type { get; set; }
 
 	public int Total { get; set; }
 
@@ -16,8 +16,8 @@ public class CollectionModel<T> where T : ItemModel
 	public int Offset { get; set; }
 
 	[JsonPropertyName("_embedded")]
-	public Embedded<T> Embedded { get; set; }
+	public Embedded<T>? Embedded { get; set; }
 
 	[JsonPropertyName("_links")]
-	public Links Links { get; set; }
+	public required Links Links { get; set; }
 }

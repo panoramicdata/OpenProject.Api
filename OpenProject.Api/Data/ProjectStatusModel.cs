@@ -3,4 +3,4 @@
 /// <summary>
 /// ProjectStatusModel
 /// </summary>
-public class ProjectStatusModel : NamedItemModel;
+public class ProjectStatusModel : NamedIdentifiedItemModel<string>;

@@ -2,7 +2,7 @@
 
 namespace OpenProject.Api.Data;
 
-public class ProjectModel : NamedItemModel
+public class ProjectModel : NamedIdentifiedItemModel<int>
 {
 	public required string Identifier { get; set; }
 

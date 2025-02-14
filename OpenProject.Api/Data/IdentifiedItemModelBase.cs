@@ -2,12 +2,10 @@
 
 namespace OpenProject.Api.Data;
 
-public abstract class ItemModel
+public abstract class IdentifiedItemModelBase
 {
 	[JsonPropertyName("_type")]
 	public required string Type { get; set; }
-
-	public int Id { get; set; }
 
 	public DateTime? CreatedAt { get; set; }
 

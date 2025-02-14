@@ -41,6 +41,7 @@ public class OpenProjectClient : IDisposable
 		};
 
 		Projects = RefitFor(Projects!);
+		ProjectCategories = RefitFor(ProjectCategories!);
 		ProjectStatuses = RefitFor(ProjectStatuses!);
 	}
 
@@ -54,6 +55,8 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IProjects Projects { get; }
+
+	public IProjectCategories ProjectCategories { get; }
 
 	/// <inheritdoc />
 	public IProjectStatuses ProjectStatuses { get; }
