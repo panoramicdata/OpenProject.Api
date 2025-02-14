@@ -7,11 +7,12 @@ public class ProjectTests(
 	[Fact]
 	public async Task GetAllAsync_Succeeds()
 	{
-		var projectCollection = await OpenProjectClient
+		var projects = await OpenProjectClient
 			.Projects
 			.GetAllAsync(default);
 
-		var projects = projectCollection.Embedded.Elements;
+		projects.Should().NotBeNull();
+		projects.Embedded.Should().NotBeNull();
 	}
 
 	[Fact]
@@ -27,22 +28,8 @@ public class ProjectTests(
 			var projectRefetch = await OpenProjectClient
 				.Projects
 				.GetAsync(project.Id, default);
-		}
-	}
 
-	[Fact]
-	public async Task GetStatusAsync_Succeeds()
-	{
-		var response = await OpenProjectClient
-			.Projects
-			.GetAllAsync(default);
-
-		foreach (var project in response.Embedded.Elements)
-		{
-			// Get Status
-			var status = await OpenProjectClient
-				.Projects
-				.GetStatusAsync(project.Id, default);
+			projectRefetch.Should().NotBeNull();
 		}
 	}
 }

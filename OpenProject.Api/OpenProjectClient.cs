@@ -41,6 +41,7 @@ public class OpenProjectClient : IDisposable
 		};
 
 		Projects = RefitFor(Projects!);
+		ProjectStatuses = RefitFor(ProjectStatuses!);
 	}
 
 	private T RefitFor<T>(T _)
@@ -53,6 +54,9 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IProjects Projects { get; }
+
+	/// <inheritdoc />
+	public IProjectStatuses ProjectStatuses { get; }
 
 	public async Task<JObject?> GetJObjectAsync(string subUrl, CancellationToken cancellationToken)
 	{
@@ -113,7 +117,7 @@ public class OpenProjectClient : IDisposable
 			{
 				var json = await httpResponseMessage
 					.Content
-					.ReadAsStringAsync();
+					.ReadAsStringAsync(cancellationToken);
 				var jObject = json == null ? null : JsonConvert.DeserializeObject<JObject>(json);
 
 				list.AddRange(jObject?["items"]?.ToObject<List<JObject>>() ?? throw new FormatException("Cannot deserialize items."));

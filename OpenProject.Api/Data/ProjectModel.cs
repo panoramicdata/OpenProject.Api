@@ -1,11 +1,18 @@
-﻿namespace OpenProject.Api.Data;
+﻿using System.Text.Json.Serialization;
 
-public class ProjectModel : ItemModel
+namespace OpenProject.Api.Data;
+
+public class ProjectModel : NamedItemModel
 {
-	public string identifier { get; set; }
-	public string name { get; set; }
-	public bool active { get; set; }
-	public bool _public { get; set; }
-	public Description description { get; set; }
-	public StatusExplanation statusExplanation { get; set; }
+	public required string Identifier { get; set; }
+
+	[JsonPropertyName("active")]
+	public required bool IsActive { get; set; }
+
+	[JsonPropertyName("_public")]
+	public bool IsPublic { get; set; }
+
+	public required Formattable Description { get; set; }
+
+	public required Formattable StatusExplanation { get; set; }
 }

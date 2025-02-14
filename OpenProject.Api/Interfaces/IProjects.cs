@@ -1,7 +1,8 @@
 namespace OpenProject.Api.Interfaces;
 
 /// <summary>
-/// Represents a collection of functions to interact with the API endpoints
+/// Project endpoints
+/// See https://www.openproject.org/docs/api/endpoints/projects/
 /// </summary>
 public interface IProjects
 {
