@@ -9,7 +9,7 @@
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisLevel>latest-recommended</AnalysisLevel>
 		<NeutralLanguage>en</NeutralLanguage>
-		<Copyright>Panoramic Data Limited 2021-2022</Copyright>
+		<Copyright>Panoramic Data Limited 2025</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<ApplicationIcon>Icon.ico</ApplicationIcon>
 		<Description>OpenProject REST API</Description>
@@ -22,6 +22,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Company>Panoramic Data Limited</Company>
 		<Authors>Panoramic Data Limited</Authors>
+		<PackageReadmeFile>..\README.md</PackageReadmeFile>
 		<PackageReleaseNotes>
 			Initial release
 		</PackageReleaseNotes>
