@@ -1,6 +1,6 @@
 ﻿namespace OpenProject.Api.Data;
 
 /// <summary>
-/// User Group
+/// Principal
 /// </summary>
-public class UserGroup : NamedIdentifiedItem<int>;
+public class Principal : NamedIdentifiedItem<int>;

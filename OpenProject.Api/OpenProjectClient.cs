@@ -40,6 +40,7 @@ public class OpenProjectClient : IDisposable
 			//	})
 		};
 
+		Principals = RefitFor(Principals!);
 		Projects = RefitFor(Projects!);
 		ProjectCategories = RefitFor(ProjectCategories!);
 		ProjectStatuses = RefitFor(ProjectStatuses!);
@@ -55,6 +56,9 @@ public class OpenProjectClient : IDisposable
 	private readonly RefitSettings _refitSettings;
 	private readonly bool _shouldDisposeHttpClient;
 	private bool _isDisposed;
+
+	/// <inheritdoc />
+	public IPrincipals Principals { get; }
 
 	/// <inheritdoc />
 	public IProjects Projects { get; }
