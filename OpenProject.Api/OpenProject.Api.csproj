@@ -13,9 +13,9 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<ApplicationIcon>Icon.ico</ApplicationIcon>
 		<Description>OpenProject REST API</Description>
-		<PackageProjectUrl>https://github.com/panoramicdata/AutoTask.Psa.Api</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/panoramicdata/OpenProject.Api</PackageProjectUrl>
 		<PackageIcon>Icon.png</PackageIcon>
-		<RepositoryUrl>https://github.com/panoramicdata/AutoTask.Psa.Api</RepositoryUrl>
+		<RepositoryUrl>https://github.com/panoramicdata/OpenProject.Api</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>open project openproject rest api</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
