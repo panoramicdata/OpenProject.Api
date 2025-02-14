@@ -1,6 +1,6 @@
 ﻿namespace OpenProject.Api.Test;
 
-public class UserGroupTests(
+public class UserTests(
 	ITestOutputHelper testOutputHelper,
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
@@ -9,7 +9,7 @@ public class UserGroupTests(
 	{
 		// Get
 		var items = await OpenProjectClient
-			.UserGroups
+			.Users
 			.GetAllAsync(default);
 
 		items.Should().NotBeNull();
@@ -19,7 +19,7 @@ public class UserGroupTests(
 		foreach (var item in items.Embedded.Elements)
 		{
 			var refetchedItem = await OpenProjectClient
-				.UserGroups
+				.Users
 				.GetAsync(item.Id, default);
 			refetchedItem.Should().NotBeNull();
 		}

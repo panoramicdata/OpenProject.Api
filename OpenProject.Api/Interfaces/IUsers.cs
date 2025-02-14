@@ -1,27 +1,27 @@
 ﻿namespace OpenProject.Api.Interfaces;
 
 /// <summary>
-/// User groups
-/// See https://www.openproject.org/docs/api/endpoints/groups/
+/// Users
+/// See https://www.openproject.org/docs/api/endpoints/users/
 /// </summary>
-public interface IUserGroups
+public interface IUsers
 {
 	/// <summary>
-	/// Get all user groups
+	/// Get all users
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroups</returns>
-	[Get("/groups")]
-	Task<OpenProjectItemSet<UserGroup>> GetAllAsync(
+	[Get("/users")]
+	Task<OpenProjectItemSet<User>> GetAllAsync(
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Get user group
+	/// Get user
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>
-	[Get("/groups/{id}")]
-	Task<UserGroup> GetAsync(
+	[Get("/users/{id}")]
+	Task<User> GetAsync(
 		int id,
 		CancellationToken cancellationToken);
 }
