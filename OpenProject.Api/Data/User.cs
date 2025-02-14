@@ -1,10 +1,12 @@
-﻿namespace OpenProject.Api.Data;
+﻿using System.Text.Json.Serialization;
+
+namespace OpenProject.Api.Data;
 
 public class User : NamedIdentifiedItem<int>
 {
 	public required string Login { get; set; }
 
-	[JsonProperty("admin")]
+	[JsonPropertyName("admin")]
 	public bool IsAdmin { get; set; }
 
 	public required string FirstName { get; set; }
