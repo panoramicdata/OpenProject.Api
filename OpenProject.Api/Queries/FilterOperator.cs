@@ -21,5 +21,21 @@ public enum FilterOperator
 	InWeek,
 	Today,
 	ContainWords,
-	NotContainWords
+	NotContainWords,
+	WorkPackageStatusOpen,
+	WorkPackageStatusClosed,
+	WorkPackageHasManualSortOrder,
+	WorkPackageBlocks,
+	WorkPackageBlocked,
+	WorkPackageChildren,
+	WorkPackageParent,
+	WorkPackageFollows,
+	WorkPackagePrecedes,
+	WorkPackageDuplicates,
+	WorkPackageDuplicated,
+	WorkPackageIncludes,
+	WorkPackageRelates,
+	WorkPackageRequires,
+	WorkPackageRequired,
+	WorkPackagePartOf
 }
