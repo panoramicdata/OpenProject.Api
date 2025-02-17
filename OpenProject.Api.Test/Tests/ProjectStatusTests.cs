@@ -1,4 +1,4 @@
-﻿namespace OpenProject.Api.Test;
+﻿namespace OpenProject.Api.Test.Tests;
 
 public class ProjectStatusTests(
 	ITestOutputHelper testOutputHelper,

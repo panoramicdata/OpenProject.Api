@@ -1,6 +1,6 @@
-﻿namespace OpenProject.Api.Test;
+﻿namespace OpenProject.Api.Test.Tests;
 
-public class UserTests(
+public class PrincipalTests(
 	ITestOutputHelper testOutputHelper,
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
@@ -9,7 +9,7 @@ public class UserTests(
 	{
 		// Get
 		var items = await OpenProjectClient
-			.Users
+			.Principals
 			.GetAllAsync(default);
 
 		items.Should().NotBeNull();
@@ -19,7 +19,7 @@ public class UserTests(
 		foreach (var item in items.Embedded.Elements)
 		{
 			var refetchedItem = await OpenProjectClient
-				.Users
+				.Principals
 				.GetAsync(item.Id, default);
 			refetchedItem.Should().NotBeNull();
 		}
