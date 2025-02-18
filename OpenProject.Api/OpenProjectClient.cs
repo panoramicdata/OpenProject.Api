@@ -26,6 +26,7 @@ public class OpenProjectClient : IDisposable
 			//UrlParameterFormatter = new OpenProjectUrlParameterFormatter(),
 		};
 
+		Actions = RefitFor(Actions!);
 		Principals = RefitFor(Principals!);
 		Projects = RefitFor(Projects!);
 		ProjectCategories = RefitFor(ProjectCategories!);
@@ -44,6 +45,9 @@ public class OpenProjectClient : IDisposable
 	private readonly RefitSettings _refitSettings;
 	private readonly bool _shouldDisposeHttpClient;
 	private bool _isDisposed;
+
+	/// <inheritdoc />
+	public IActions Actions { get; }
 
 	/// <inheritdoc />
 	public IPrincipals Principals { get; }
