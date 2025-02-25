@@ -27,6 +27,7 @@ public class OpenProjectClient : IDisposable
 		};
 
 		Actions = RefitFor(Actions!);
+		Grids = RefitFor(Grids!);
 		Principals = RefitFor(Principals!);
 		Projects = RefitFor(Projects!);
 		ProjectCategories = RefitFor(ProjectCategories!);
@@ -48,6 +49,8 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IActions Actions { get; }
+
+	public IGrids Grids { get; }
 
 	/// <inheritdoc />
 	public IPrincipals Principals { get; }
