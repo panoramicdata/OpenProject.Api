@@ -15,6 +15,8 @@ public class UserGroupTests(
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
 
+		items.Embedded.Elements.Should().NotBeNull();
+
 		// Re-fetch each
 		foreach (var item in items.Embedded.Elements)
 		{

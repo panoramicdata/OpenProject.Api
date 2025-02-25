@@ -25,6 +25,8 @@ public class ProjectTests(
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
 
+		items.Embedded.Elements.Should().NotBeNull();
+
 		foreach (var project in items.Embedded.Elements)
 		{
 			// Get

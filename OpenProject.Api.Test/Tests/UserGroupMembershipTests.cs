@@ -25,6 +25,8 @@ public class UserGroupMembershipTests(
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
 
+		items.Embedded.Elements.Should().NotBeNull();
+
 		foreach (var item in items.Embedded.Elements)
 		{
 			// Get

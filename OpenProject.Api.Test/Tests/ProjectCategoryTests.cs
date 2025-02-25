@@ -15,6 +15,8 @@ public class ProjectCategoryTests(
 		projects.Should().NotBeNull();
 		projects.Embedded.Should().NotBeNull();
 
+		projects.Embedded.Elements.Should().NotBeNull();
+
 		foreach (var project in projects.Embedded.Elements)
 		{
 			var projectCategories = await OpenProjectClient
