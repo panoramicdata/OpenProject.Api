@@ -1,4 +1,10 @@
 ﻿namespace OpenProject.Api.Interfaces;
+
+/// <summary>
+/// Grids 
+/// See https://www.openproject.org/docs/api/endpoints/grids/
+/// </summary>
+/// 
 public interface IGrids
 {
 	[Get("/grids")]
