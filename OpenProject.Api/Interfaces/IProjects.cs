@@ -54,4 +54,13 @@ public interface IProjects
 	Task<OpenProjectItemSet<User>> GetAvailableAssigneesAsync(
 		int id,
 		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Gets all parent projects
+	/// </summary>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Get("/projects/available_parent_projects")]
+	Task<OpenProjectItemSet<Project>> GetAvailableParentProjectsAsync(
+		CancellationToken cancellationToken);
 }

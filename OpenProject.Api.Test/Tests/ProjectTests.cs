@@ -58,4 +58,16 @@ public class ProjectTests(
 			availableAssignees.Should().NotBeNull();
 		}
 	}
+
+	[Fact]
+	public async Task GetAvailableParentProjectsAsync_Succeeds()
+	{
+		// Get
+		var items = await OpenProjectClient
+			.Projects
+			.GetAvailableParentProjectsAsync(default);
+
+		items.Should().NotBeNull();
+		items.Embedded.Should().NotBeNull();
+	}
 }
