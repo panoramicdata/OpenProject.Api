@@ -3,4 +3,7 @@
 /// <summary>
 /// ProjectStatusModel
 /// </summary>
-public class ProjectStatus : NamedIdentifiedItem<string>;
+public class ProjectStatus : IdentifiedItem<string>, INamed
+{
+	public string Name { get; set; }
+}

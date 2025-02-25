@@ -1,6 +1,6 @@
 ﻿using Action = OpenProject.Api.Data.Action;
 
-namespace OpenProject.Api.Interfaces;
+namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
 /// Principals

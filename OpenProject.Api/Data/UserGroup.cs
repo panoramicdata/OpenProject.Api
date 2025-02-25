@@ -3,4 +3,7 @@
 /// <summary>
 /// User Group
 /// </summary>
-public class UserGroup : NamedIdentifiedItem<int>;
+public class UserGroup : IdentifiedItem<int>, INamed
+{
+	public required string Name { get; set; }
+}

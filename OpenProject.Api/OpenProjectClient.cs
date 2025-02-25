@@ -1,3 +1,5 @@
+using OpenProject.Api.Interfaces.Controllers;
+
 namespace OpenProject.Api;
 
 /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace OpenProject.Api.Interfaces;
+﻿namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
 /// Grids 

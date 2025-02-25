@@ -2,9 +2,11 @@
 
 namespace OpenProject.Api.Data;
 
-public class Project : NamedIdentifiedItem<int>
+public class Project : IdentifiedItem<int>, INamed
 {
 	public required string Identifier { get; set; }
+
+	public required string Name { get; set; }
 
 	[JsonPropertyName("active")]
 	public required bool IsActive { get; set; }

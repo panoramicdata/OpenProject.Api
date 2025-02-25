@@ -3,4 +3,7 @@
 /// <summary>
 /// Principal
 /// </summary>
-public class Principal : NamedIdentifiedItem<int>;
+public class Principal : IdentifiedItem<int>, INamed
+{
+	public required string Name { get; set; }
+}

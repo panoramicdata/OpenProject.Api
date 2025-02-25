@@ -2,9 +2,11 @@
 
 namespace OpenProject.Api.Data;
 
-public class User : NamedIdentifiedItem<int>
+public class User : IdentifiedItem<int>, INamed
 {
 	public required string Login { get; set; }
+
+	public required string Name { get; set; }
 
 	[JsonPropertyName("admin")]
 	public bool IsAdmin { get; set; }
@@ -22,4 +24,5 @@ public class User : NamedIdentifiedItem<int>
 	public required object IdentityUrl { get; set; }
 
 	public required string Language { get; set; }
+
 }
