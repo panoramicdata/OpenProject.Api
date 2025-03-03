@@ -1,6 +1,7 @@
-﻿namespace OpenProject.Api.Data;
+﻿
+namespace OpenProject.Api.Data;
 
-public class WorkPackage : IdentifiedItem<int>
+public class WorkPackage : IdentifiedItem<int>, IHasTimestamps
 {
 	public string? DerivedStartDate { get; set; }
 
@@ -40,4 +41,8 @@ public class WorkPackage : IdentifiedItem<int>
 	public required int? PercentageDone { get; set; }
 
 	public required int? DerivedPercentageDone { get; set; }
+
+	public DateTime? CreatedAt { get; set; }
+
+	public DateTime? UpdatedAt { get; set; }
 }

@@ -2,7 +2,7 @@
 
 namespace OpenProject.Api.Data;
 
-public class User : IdentifiedItem<int>, INamed
+public class User : IdentifiedItem<int>, INamed, IHasTimestamps
 {
 	public required string Login { get; set; }
 
@@ -25,4 +25,7 @@ public class User : IdentifiedItem<int>, INamed
 
 	public required string Language { get; set; }
 
+	public DateTime? CreatedAt { get; set; }
+
+	public DateTime? UpdatedAt { get; set; }
 }

@@ -2,16 +2,18 @@
 using System.Text.Json.Serialization;
 
 namespace OpenProject.Api.Data;
-public class Query : IdentifiedItem<int>
+
+public class Query : IdentifiedItem<int>, INamed, IHasTimestamps
 {
 	[JsonPropertyName("starred")]
 	public bool IsStarred { get; set; }
 
-	public string Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 
-	public IEnumerable<Filter> Filters { get; set; }
+	public IEnumerable<Filter> Filters { get; set; } = [];
 
 	public bool IncludeSubProjects { get; set; }
+
 	public bool Sums { get; set; }
 
 	[JsonPropertyName("public")]
@@ -24,11 +26,15 @@ public class Query : IdentifiedItem<int>
 
 	public bool ShowHierarchies { get; set; }
 
-	public string TimelineZoomLevel { get; set; }
+	public string TimelineZoomLevel { get; set; } = string.Empty;
 
 	public IDictionary TimelineLables { get; set; }
 
 	public IEnumerable<string> Timestamps { get; set; } = [];
 
-	public string HighlightingMode { get; set; }
+	public string HighlightingMode { get; set; } = string.Empty;
+
+	public DateTime? CreatedAt { get; set; }
+
+	public DateTime? UpdatedAt { get; set; }
 }

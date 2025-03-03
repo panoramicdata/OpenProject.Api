@@ -2,5 +2,5 @@
 
 public class Parent
 {
-	public object href { get; set; }
+	public object Href { get; set; }
 }

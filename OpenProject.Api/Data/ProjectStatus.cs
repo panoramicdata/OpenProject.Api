@@ -5,5 +5,5 @@
 /// </summary>
 public class ProjectStatus : IdentifiedItem<string>, INamed
 {
-	public string Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 }

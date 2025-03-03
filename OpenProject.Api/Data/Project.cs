@@ -2,7 +2,7 @@
 
 namespace OpenProject.Api.Data;
 
-public class Project : IdentifiedItem<int>, INamed
+public class Project : IdentifiedItem<int>, INamed, IHasTimestamps
 {
 	public required string Identifier { get; set; }
 
@@ -17,4 +17,8 @@ public class Project : IdentifiedItem<int>, INamed
 	public required Formattable Description { get; set; }
 
 	public required Formattable StatusExplanation { get; set; }
+
+	public DateTime? CreatedAt { get; set; }
+
+	public DateTime? UpdatedAt { get; set; }
 }
