@@ -4,13 +4,14 @@ using OpenProject.Api.Queries;
 namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
-/// Project Category endpoints
-/// See https://www.openproject.org/docs/api/endpoints/types/
+/// Work package types represented in the system.
+/// Types exist globally and are then activated for projects.
+/// <para><a href='https://www.openproject.org/docs/api/endpoints/types/'/></para>
 /// </summary>
 public interface ITypes
 {
 	/// <summary>
-	/// Get project status
+	/// Get All Types of Work Packages
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
@@ -19,7 +20,7 @@ public interface ITypes
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Get project status
+	/// Get Types based on Filters
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>

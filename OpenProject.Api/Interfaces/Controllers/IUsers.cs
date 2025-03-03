@@ -3,13 +3,13 @@
 namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
-/// Users
-/// See https://www.openproject.org/docs/api/endpoints/users/
+/// Users are the people who use the OpenProject instance. They can be assigned to work packages, projects, and groups.
+/// <para>See <a href='https://www.openproject.org/docs/api/endpoints/users/'/></para>
 /// </summary>
 public interface IUsers
 {
 	/// <summary>
-	/// Get all users
+	/// Get all Users
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroups</returns>
@@ -18,7 +18,7 @@ public interface IUsers
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Get user
+	/// Get User by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>

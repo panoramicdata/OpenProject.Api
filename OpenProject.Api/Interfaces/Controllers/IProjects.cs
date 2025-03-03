@@ -3,13 +3,13 @@ using OpenProject.Api.Data.Models;
 namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
-/// Project endpoints
-/// See https://www.openproject.org/docs/api/endpoints/projects/
+/// Projects are containers structuring the information (e.g. work packages, wikis) into smaller groups.
+/// <para>See <a href='https://www.openproject.org/docs/api/endpoints/projects/'/></para>
 /// </summary>
 public interface IProjects
 {
 	/// <summary>
-	/// Create a project
+	/// Create a Project
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>
@@ -19,7 +19,7 @@ public interface IProjects
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Patch a project
+	/// Get a project by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>

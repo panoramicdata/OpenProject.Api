@@ -9,7 +9,7 @@ namespace OpenProject.Api.Interfaces.Controllers;
 public interface IActions
 {
 	/// <summary>
-	/// Get all actions
+	/// Get all Actions
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of Actions</returns>
@@ -18,7 +18,7 @@ public interface IActions
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Get action
+	/// Get Action by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of Action</returns>

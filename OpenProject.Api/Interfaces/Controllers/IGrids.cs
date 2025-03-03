@@ -8,9 +8,20 @@ namespace OpenProject.Api.Interfaces.Controllers;
 /// </summary>
 public interface IGrids
 {
+	/// <summary>
+	/// Get all Grids
+	/// </summary>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
 	[Get("/grids")]
 	public Task<OpenProjectItemSet<Grid>> GetAllAsync(CancellationToken cancellationToken);
 
+	/// <summary>
+	/// Get Grid by ID
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
 	[Get("/grids/{id}")]
 	public Task<OpenProjectItemSet<Grid>> GetAsync(
 		int id,

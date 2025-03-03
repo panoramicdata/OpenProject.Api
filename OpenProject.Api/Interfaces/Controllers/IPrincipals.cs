@@ -3,13 +3,13 @@
 namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
-/// Principals
-/// See https://www.openproject.org/docs/api/endpoints/groups/
+/// Principals are the superclass of users, groups and placeholder users. This end point returns all principals within a joined collection but can be filtered to e.g. only return groups or users.
+/// <para>See <a href='https://www.openproject.org/docs/api/endpoints/groups/'/></para>
 /// </summary>
 public interface IPrincipals
 {
 	/// <summary>
-	/// Get all principals
+	/// Get all Principals
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroups</returns>
@@ -18,7 +18,7 @@ public interface IPrincipals
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Get principal
+	/// Get Principal by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>

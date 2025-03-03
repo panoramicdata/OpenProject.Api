@@ -3,13 +3,13 @@
 namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
-/// Project Category endpoints
-/// See https://www.openproject.org/docs/api/endpoints/memberships/
+/// Users and groups can become Members of a project. Such a Membership will also have one or more roles assigned to it. By that, memberships control the permissions a user has within a project.
+/// <para>See <a href='https://www.openproject.org/docs/api/endpoints/memberships/'/></para>
 /// </summary>
 public interface IMemberships
 {
 	/// <summary>
-	/// Get all memberships
+	/// Get all Memberships
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroups</returns>
@@ -18,7 +18,7 @@ public interface IMemberships
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Get membership by ID
+	/// Get Membership by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>
