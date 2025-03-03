@@ -3,18 +3,18 @@
 namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
-/// Project Status endpoints
-/// See https://www.openproject.org/docs/api/endpoints/projects/
+/// Statuses are used to differentiate Work Packages, filter, and group by certain attributes.
+/// <para>See <a href='https://www.openproject.org/docs/api/endpoints/statuses/'/></para>
 /// </summary>
 public interface IStatuses
 {
 	/// <summary>
-	/// Get project status
+	/// Get Status of Work Package by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
-	[Get("/project_statuses/{projectId}")]
+	[Get("/statuses/{workPackageId}")]
 	Task<Status> GetAsync(
-		string projectId,
+		int workPackageId,
 		CancellationToken cancellationToken);
 }

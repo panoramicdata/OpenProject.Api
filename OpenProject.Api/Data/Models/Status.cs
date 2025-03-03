@@ -4,7 +4,7 @@
 /// Serves information for yourself and the team if the project is on track.
 /// <para>See <a href='https://www.openproject.org/docs/user-guide/projects/project-status/'/></para>
 /// </summary>
-public class Status : IdentifiedItem<string>, INamed
+public class Status : IdentifiedItem<int>, INamed
 {
 	/// <summary>
 	/// The status Name

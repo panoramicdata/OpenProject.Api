@@ -10,7 +10,7 @@ public class StatusTests(
 		// Get
 		var projectStatusRefetch = await OpenProjectClient
 			.Statuses
-			.GetAsync("on_track", default);
+			.GetAsync(1, default);
 
 		projectStatusRefetch.Should().NotBeNull();
 	}
