@@ -1,6 +1,6 @@
 ﻿namespace OpenProject.Api.Test.Tests;
 
-public class WorkPackageTypeTests(
+public class TypeTests(
 	ITestOutputHelper testOutputHelper,
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {

@@ -1,6 +1,6 @@
 ﻿namespace OpenProject.Api.Test.Tests;
 
-public class UserGroupTests(
+public class GroupTests(
 	ITestOutputHelper testOutputHelper,
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
