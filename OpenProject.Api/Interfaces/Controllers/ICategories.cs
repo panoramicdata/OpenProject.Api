@@ -3,8 +3,8 @@
 namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
-/// Work Package Category
-/// See https://www.openproject.org/docs/api/endpoints/categories/
+/// Categories are used to differentiate Work Packages, filter, and group by certain attributes.
+/// <para>See <a href='https://www.openproject.org/docs/api/endpoints/categories/'/></para>
 /// </summary>
 public interface ICategories
 {
