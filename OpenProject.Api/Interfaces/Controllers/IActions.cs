@@ -3,8 +3,8 @@
 namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
-/// Principals
-/// See https://www.openproject.org/docs/api/endpoints/actions-capabilities/
+/// An action is a change one can trigger within the OpenProject instance. This could be creating a work package, exporting work packages or updating a user.
+/// <para>See <a href='https://www.openproject.org/docs/api/endpoints/actions-capabilities/'/> </para>
 /// </summary>
 public interface IActions
 {
