@@ -81,7 +81,7 @@ public class OpenProjectClient : IDisposable
 	public IUserGroups UserGroups { get; }
 
 	/// <inheritdoc>/>
-	public IUserGroupMemberships UserGroupMemberships { get; }
+	public IMemberships UserGroupMemberships { get; }
 
 	/// <inheritdoc />
 	public IWorkPackages WorkPackages { get; }

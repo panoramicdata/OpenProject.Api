@@ -6,24 +6,24 @@ namespace OpenProject.Api.Interfaces.Controllers;
 /// Project Category endpoints
 /// See https://www.openproject.org/docs/api/endpoints/memberships/
 /// </summary>
-public interface IUserGroupMemberships
+public interface IMemberships
 {
 	/// <summary>
-	/// Get all user group memberships
+	/// Get all memberships
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroups</returns>
 	[Get("/memberships")]
-	Task<OpenProjectItemSet<UserGroupMembership>> GetAllAsync(
+	Task<OpenProjectItemSet<Membership>> GetAllAsync(
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Get user group membership
+	/// Get membership by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>
 	[Get("/memberships/{id}")]
-	Task<UserGroupMembership> GetAsync(
+	Task<Membership> GetAsync(
 		int id,
 		CancellationToken cancellationToken);
 }
