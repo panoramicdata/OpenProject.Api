@@ -1,4 +1,6 @@
-﻿namespace OpenProject.Api.Interfaces;
+﻿using OpenProject.Api.Data.Models;
+
+namespace OpenProject.Api.Interfaces;
 
 /// <summary>
 /// User groups

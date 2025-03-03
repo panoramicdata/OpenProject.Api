@@ -1,4 +1,5 @@
-﻿using OpenProject.Api.Queries;
+﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Queries;
 
 namespace OpenProject.Api.Interfaces;
 

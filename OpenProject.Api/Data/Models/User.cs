@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace OpenProject.Api.Data;
+namespace OpenProject.Api.Data.Models;
 
 public class User : IdentifiedItem<int>, INamed, IHasTimestamps
 {

@@ -1,4 +1,4 @@
-﻿using Action = OpenProject.Api.Data.Action;
+﻿using Action = OpenProject.Api.Data.Models.Action;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 

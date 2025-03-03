@@ -1,5 +1,4 @@
-﻿
-namespace OpenProject.Api.Data;
+﻿namespace OpenProject.Api.Data.Models;
 public class Grid : IdentifiedItem<int>, IHasTimestamps
 {
 	public int RowCount { get; set; }

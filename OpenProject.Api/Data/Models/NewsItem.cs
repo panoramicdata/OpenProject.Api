@@ -1,4 +1,4 @@
-﻿namespace OpenProject.Api.Data;
+﻿namespace OpenProject.Api.Data.Models;
 public class NewsItem : IdentifiedItem<int>
 {
 	public required string Title { get; set; }

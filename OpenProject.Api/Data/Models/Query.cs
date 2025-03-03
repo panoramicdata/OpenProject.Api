@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Text.Json.Serialization;
 
-namespace OpenProject.Api.Data;
+namespace OpenProject.Api.Data.Models;
 
 public class Query : IdentifiedItem<int>, INamed, IHasTimestamps
 {

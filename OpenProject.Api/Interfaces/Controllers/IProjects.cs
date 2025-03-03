@@ -1,3 +1,5 @@
+using OpenProject.Api.Data.Models;
+
 namespace OpenProject.Api.Interfaces;
 
 /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace OpenProject.Api.Data;
+﻿namespace OpenProject.Api.Data.Models;
 /// <summary>
 /// A Document is a file containing a list of attachments
 /// </summary>
