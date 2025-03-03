@@ -34,7 +34,7 @@ public class Query : IdentifiedItem<int>, INamed, IHasTimestamps
 
 	public string HighlightingMode { get; set; } = string.Empty;
 
-	public DateTime? CreatedAt { get; set; }
+	public DateTime CreatedAt { get; set; }
 
-	public DateTime? UpdatedAt { get; set; }
+	public DateTime UpdatedAt { get; set; }
 }

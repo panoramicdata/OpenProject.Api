@@ -25,7 +25,7 @@ public class User : IdentifiedItem<int>, INamed, IHasTimestamps
 
 	public required string Language { get; set; }
 
-	public DateTime? CreatedAt { get; set; }
+	public DateTime CreatedAt { get; set; }
 
-	public DateTime? UpdatedAt { get; set; }
+	public DateTime UpdatedAt { get; set; }
 }

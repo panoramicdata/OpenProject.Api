@@ -1,7 +1,7 @@
 ﻿using OpenProject.Api.Data.Models;
 using OpenProject.Api.Queries;
 
-namespace OpenProject.Api.Interfaces;
+namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
 /// Work packages

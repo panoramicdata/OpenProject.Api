@@ -26,10 +26,10 @@ public class Grid : IdentifiedItem<int>, IHasTimestamps
 	/// <summary>
 	/// The time the grid was created
 	/// </summary>
-	public DateTime? CreatedAt { get; set; }
+	public DateTime CreatedAt { get; set; }
 
 	/// <summary>
 	/// The time the grid was last updated
 	/// </summary>
-	public DateTime? UpdatedAt { get; set; }
+	public DateTime UpdatedAt { get; set; }
 }

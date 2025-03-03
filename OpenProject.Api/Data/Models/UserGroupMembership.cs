@@ -6,7 +6,7 @@ namespace OpenProject.Api.Data.Models;
 /// </summary>
 public class UserGroupMembership : IdentifiedItem<int>, IHasTimestamps
 {
-	public DateTime? CreatedAt { get; set; }
+	public DateTime CreatedAt { get; set; }
 
-	public DateTime? UpdatedAt { get; set; }
+	public DateTime UpdatedAt { get; set; }
 }

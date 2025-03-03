@@ -34,14 +34,13 @@ public class WorkPackage : IdentifiedItem<int>, IHasTimestamps
 
 	public required object DerivedRemainingTime { get; set; }
 
-
 	public required bool IgnoreNonWorkingDays { get; set; }
 
 	public required int? PercentageDone { get; set; }
 
 	public required int? DerivedPercentageDone { get; set; }
 
-	public DateTime? CreatedAt { get; set; }
+	public DateTime CreatedAt { get; set; }
 
-	public DateTime? UpdatedAt { get; set; }
+	public DateTime UpdatedAt { get; set; }
 }

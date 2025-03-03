@@ -18,7 +18,7 @@ public class Project : IdentifiedItem<int>, INamed, IHasTimestamps
 
 	public required Formattable StatusExplanation { get; set; }
 
-	public DateTime? CreatedAt { get; set; }
+	public DateTime CreatedAt { get; set; }
 
-	public DateTime? UpdatedAt { get; set; }
+	public DateTime UpdatedAt { get; set; }
 }
