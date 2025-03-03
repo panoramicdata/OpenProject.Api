@@ -11,7 +11,7 @@ public class WorkPackage : IdentifiedItem<int>, IHasTimestamps
 	/// <summary>
 	/// The version of the item as used for optimistic locking
 	/// </summary>
-	public required int? LockVersion { get; set; }
+	public int? LockVersion { get; set; }
 
 	/// <summary>
 	/// Work package subject

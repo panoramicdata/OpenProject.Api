@@ -9,7 +9,7 @@ public class UserGroupTests(
 	{
 		// Get
 		var items = await OpenProjectClient
-			.UserGroups
+			.Groups
 			.GetAllAsync(default);
 
 		items.Should().NotBeNull();
@@ -21,7 +21,7 @@ public class UserGroupTests(
 		foreach (var item in items.Embedded.Elements)
 		{
 			var refetchedItem = await OpenProjectClient
-				.UserGroups
+				.Groups
 				.GetAsync(item.Id, default);
 			refetchedItem.Should().NotBeNull();
 		}

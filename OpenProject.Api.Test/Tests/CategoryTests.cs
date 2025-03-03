@@ -1,6 +1,6 @@
 ﻿namespace OpenProject.Api.Test.Tests;
 
-public class ProjectCategoryTests(
+public class CategoryTests(
 	ITestOutputHelper testOutputHelper,
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {

@@ -6,15 +6,15 @@ namespace OpenProject.Api.Interfaces.Controllers;
 /// Work Package Category
 /// See https://www.openproject.org/docs/api/endpoints/categories/
 /// </summary>
-public interface IWorkPackageCategories
+public interface ICategories
 {
 	/// <summary>
 	/// Get Categories for a Project
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
-	/// <returns>Returns a Task containing a collection of <see cref="WorkPackageCategory"/></returns>
+	/// <returns>Returns a Task containing a collection of <see cref="Category"/></returns>
 	[Get("/categories/{projectId}")]
-	Task<OpenProjectItemSet<WorkPackageCategory>> GetForProjectAsync(
+	Task<OpenProjectItemSet<Category>> GetForProjectAsync(
 		int projectId,
 		CancellationToken cancellationToken);
 }

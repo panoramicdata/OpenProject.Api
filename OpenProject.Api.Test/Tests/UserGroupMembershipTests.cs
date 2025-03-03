@@ -8,7 +8,7 @@ public class UserGroupMembershipTests(
 	public async Task GetAllAsync_Succeeds()
 	{
 		var items = await OpenProjectClient
-			.UserGroupMemberships
+			.Memberships
 			.GetAllAsync(default);
 
 		items.Should().NotBeNull();
@@ -19,7 +19,7 @@ public class UserGroupMembershipTests(
 	public async Task GetAsync_Succeeds()
 	{
 		var items = await OpenProjectClient
-			.UserGroupMemberships
+			.Memberships
 			.GetAllAsync(default);
 
 		items.Should().NotBeNull();
@@ -31,7 +31,7 @@ public class UserGroupMembershipTests(
 		{
 			// Get
 			var itemRefetch = await OpenProjectClient
-				.UserGroupMemberships
+				.Memberships
 				.GetAsync(item.Id, default);
 
 			itemRefetch.Should().NotBeNull();

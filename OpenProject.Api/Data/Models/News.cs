@@ -4,7 +4,7 @@
 /// News are articles written by users in order to inform other users of important information.
 /// <para>See <a href='https://www.openproject.org/docs/api/endpoints/news/'/></para>
 /// </summary>
-public class NewsItem : IdentifiedItem<int>
+public class News : IdentifiedItem<int>
 {
 	/// <summary>
 	/// The headline of the news

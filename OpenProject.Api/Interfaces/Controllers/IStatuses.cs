@@ -6,7 +6,7 @@ namespace OpenProject.Api.Interfaces.Controllers;
 /// Project Status endpoints
 /// See https://www.openproject.org/docs/api/endpoints/projects/
 /// </summary>
-public interface IProjectStatuses
+public interface IStatuses
 {
 	/// <summary>
 	/// Get project status
@@ -14,7 +14,7 @@ public interface IProjectStatuses
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/project_statuses/{projectId}")]
-	Task<ProjectStatus> GetAsync(
+	Task<Status> GetAsync(
 		string projectId,
 		CancellationToken cancellationToken);
 }

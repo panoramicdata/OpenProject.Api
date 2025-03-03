@@ -4,7 +4,7 @@
 /// Groups are collections of users. They support assigning/unassigning multiple users to/from a project in one operation.
 /// <para>See <a href='https://www.openproject.org/docs/api/endpoints/groups/'/></para>
 /// </summary>
-public class UserGroup : IdentifiedItem<int>, INamed, IHasTimestamps
+public class Group : IdentifiedItem<int>, INamed, IHasTimestamps
 {
 	/// <summary>
 	/// Group’s full name, formatting depends on instance settings	

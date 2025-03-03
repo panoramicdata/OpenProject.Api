@@ -34,13 +34,13 @@ public class OpenProjectClient : IDisposable
 		News = RefitFor(News!);
 		Principals = RefitFor(Principals!);
 		Projects = RefitFor(Projects!);
-		ProjectStatuses = RefitFor(ProjectStatuses!);
+		Statuses = RefitFor(Statuses!);
 		Queries = RefitFor(Queries!);
 		Users = RefitFor(Users!);
-		UserGroups = RefitFor(UserGroups!);
-		UserGroupMemberships = RefitFor(UserGroupMemberships!);
+		Groups = RefitFor(Groups!);
+		Memberships = RefitFor(Memberships!);
 		WorkPackages = RefitFor(WorkPackages!);
-		WorkPackageTypes = RefitFor(WorkPackageTypes!);
+		Types = RefitFor(Types!);
 	}
 
 	private T RefitFor<T>(T _)
@@ -66,10 +66,10 @@ public class OpenProjectClient : IDisposable
 	/// <inheritdoc />
 	public IProjects Projects { get; }
 
-	public IWorkPackageCategories Categories { get; }
+	public ICategories Categories { get; }
 
 	/// <inheritdoc />
-	public IProjectStatuses ProjectStatuses { get; }
+	public IStatuses Statuses { get; }
 
 	/// <inheritdoc />
 	public IQueries Queries { get; }
@@ -78,16 +78,16 @@ public class OpenProjectClient : IDisposable
 	public IUsers Users { get; }
 
 	/// <inheritdoc>/>
-	public IUserGroups UserGroups { get; }
+	public IGroups Groups { get; }
 
 	/// <inheritdoc>/>
-	public IMemberships UserGroupMemberships { get; }
+	public IMemberships Memberships { get; }
 
 	/// <inheritdoc />
 	public IWorkPackages WorkPackages { get; }
 
 	/// <inheritdoc />
-	public IWorkPackageTypes WorkPackageTypes { get; }
+	public ITypes Types { get; }
 
 	protected virtual void Dispose(bool disposing)
 	{

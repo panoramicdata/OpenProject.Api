@@ -9,10 +9,10 @@ namespace OpenProject.Api.Interfaces.Controllers;
 public interface INews
 {
 	[Get("/news")]
-	public Task<OpenProjectItemSet<NewsItem>> GetAllAsync(CancellationToken cancellationToken);
+	public Task<OpenProjectItemSet<News>> GetAllAsync(CancellationToken cancellationToken);
 
 	[Get("/news/{id}")]
-	public Task<OpenProjectItemSet<NewsItem>> GetAsync(
+	public Task<OpenProjectItemSet<News>> GetAsync(
 		int id,
 		CancellationToken cancellationToken);
 }

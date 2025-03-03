@@ -9,7 +9,7 @@ public class WorkPackageTypeTests(
 	{
 		// Get
 		var workPackageTypes = await OpenProjectClient
-			.WorkPackageTypes
+			.Types
 			.GetAllAsync(default);
 
 		workPackageTypes.Should().NotBeNull();
