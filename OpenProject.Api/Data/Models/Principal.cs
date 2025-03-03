@@ -1,9 +1,9 @@
 ﻿namespace OpenProject.Api.Data.Models;
 
 /// <summary>
-/// Principal
+/// Principals are the superclass of users, groups and placeholder users.
+/// See <para><a href='https://www.openproject.org/docs/api/endpoints/principals/'/></para>
 /// </summary>
-public class Principal : IdentifiedItem<int>, INamed
+public class Principal : IdentifiedItem<int>
 {
-	public required string Name { get; set; }
 }
