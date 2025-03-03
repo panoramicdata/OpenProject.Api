@@ -20,7 +20,7 @@ public class ProjectCategoryTests(
 		foreach (var project in projects.Embedded.Elements)
 		{
 			var projectCategories = await OpenProjectClient
-				.ProjectCategories
+				.Categories
 				.GetForProjectAsync(project.Id, default);
 			projectCategories.Should().NotBeNull();
 			projectCategories.Links.Should().NotBeNull();

@@ -29,11 +29,11 @@ public class OpenProjectClient : IDisposable
 		};
 
 		Actions = RefitFor(Actions!);
+		Categories = RefitFor(Categories!);
 		Grids = RefitFor(Grids!);
 		News = RefitFor(News!);
 		Principals = RefitFor(Principals!);
 		Projects = RefitFor(Projects!);
-		ProjectCategories = RefitFor(ProjectCategories!);
 		ProjectStatuses = RefitFor(ProjectStatuses!);
 		Queries = RefitFor(Queries!);
 		Users = RefitFor(Users!);
@@ -66,7 +66,7 @@ public class OpenProjectClient : IDisposable
 	/// <inheritdoc />
 	public IProjects Projects { get; }
 
-	public IProjectCategories ProjectCategories { get; }
+	public IWorkPackageCategories Categories { get; }
 
 	/// <inheritdoc />
 	public IProjectStatuses ProjectStatuses { get; }
