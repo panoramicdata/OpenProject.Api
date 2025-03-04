@@ -54,7 +54,7 @@ public class User : IdentifiedItem<int>, INamed, IHasTimestamps
 	public required UserStatus Status { get; set; }
 
 	/// <summary>
-	/// User’s language
+	/// User’s language (ISO 639-1 Format)
 	/// </summary>
 	public required string Language { get; set; }
 

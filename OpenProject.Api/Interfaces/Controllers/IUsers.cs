@@ -1,5 +1,6 @@
 ﻿using OpenProject.Api.Data.Models;
 using OpenProject.Api.Data.Models.Create;
+using OpenProject.Api.Data.Models.Update;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -28,8 +29,38 @@ public interface IUsers
 		int id,
 		CancellationToken cancellationToken);
 
+	/// <summary>
+	/// Create a new User
+	/// </summary>
+	/// <param name="user"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
 	[Post("/users")]
-	Task<string> PostAsync(
+	Task<User> PostAsync(
 		[Body] UserCreate user,
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Update a User
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="user"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Patch("/users/{id}")]
+	Task<User> PatchAsync(
+		int id,
+		[Body] UserUpdate user,
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Delete a User
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Delete("/users/{id}")]
+	Task<string> DeleteAsync(
+		int id,
 		CancellationToken cancellationToken);
 }

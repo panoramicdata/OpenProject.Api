@@ -2,7 +2,7 @@ using Xunit.Microsoft.DependencyInjection.Abstracts;
 
 namespace OpenProject.Api.Test;
 
-[CollectionDefinition("Dependency Injection")]
+[Collection("Dependency Injection")]
 public class TestBase : TestBed<Fixture>
 {
 	public OpenProjectClient OpenProjectClient { get; }

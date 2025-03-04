@@ -1,13 +1,13 @@
 ﻿using OpenProject.Api.Enums;
 using System.Text.Json.Serialization;
 
-namespace OpenProject.Api.Data.Models.Create;
+namespace OpenProject.Api.Data.Models.Update;
 
 /// <summary>
-/// Represents an object used to create a new User on the OpenProject Instance
+/// Represents an object used to Update an existing User on the OpenProject Instance
 /// <para>See <a href='https://www.openproject.org/docs/api/endpoints/users/'/></para>
 /// </summary>
-public class UserCreate
+public class UserUpdate
 {
 	/// <summary>
 	/// User’s login name	
