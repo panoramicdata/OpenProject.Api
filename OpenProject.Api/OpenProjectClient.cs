@@ -49,6 +49,7 @@ public class OpenProjectClient : IDisposable
 		Versions = RefitFor(Versions!);
 		Views = RefitFor(Views!);
 		WorkPackages = RefitFor(WorkPackages!);
+		WorkSchedules = RefitFor(WorkSchedules!);
 		Types = RefitFor(Types!);
 	}
 
@@ -121,6 +122,9 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IWorkPackages WorkPackages { get; }
+
+	/// <inheritdoc />
+	public IWorkSchedules WorkSchedules { get; }
 
 	/// <inheritdoc />
 	public ITypes Types { get; }
