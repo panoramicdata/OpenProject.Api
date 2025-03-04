@@ -8,7 +8,7 @@
 /// Properties:
 /// <list type="bullet">
 /// <item>
-/// <description><see cref="ItemBase.Type"/>: The type of the item.</description>
+/// <description><see cref="ItemBase.ItemType"/>: The type of the item.</description>
 /// </item>
 /// <item>
 /// <description><see cref="ItemBase.Links"/>: The links associated with the item.</description>
