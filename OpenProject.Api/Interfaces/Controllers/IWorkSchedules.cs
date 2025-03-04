@@ -46,7 +46,7 @@ public interface IWorkSchedules
 	/// <param name="cancellationToken"></param>
 	/// <returns></returns>
 	[Get("/days/week/{date}")]
-	Task<Day> GetWeekDay([AliasAs("date")] string targetDate, CancellationToken cancellationToken);
+	Task<WeekDay> GetWeekDay([AliasAs("date")] int targetDate, CancellationToken cancellationToken);
 
 	/// <summary>
 	/// Lists all one-time non working days, such as holidays. It does not lists the non working weekdays, such as each Saturday, Sunday. For listing the weekends, the /api/v3/days endpoint should be used.
