@@ -41,6 +41,7 @@ public class OpenProjectClient : IDisposable
 		Roles = RefitFor(Roles!);
 		Relations = RefitFor(Relations!);
 		Statuses = RefitFor(Statuses!);
+		TimeEntries = RefitFor(TimeEntries!);
 		Queries = RefitFor(Queries!);
 		Users = RefitFor(Users!);
 		Groups = RefitFor(Groups!);
@@ -96,6 +97,9 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IStatuses Statuses { get; }
+
+	/// <inheritdoc />
+	public ITimeEntries TimeEntries { get; }
 
 	/// <inheritdoc />
 	public IQueries Queries { get; }
