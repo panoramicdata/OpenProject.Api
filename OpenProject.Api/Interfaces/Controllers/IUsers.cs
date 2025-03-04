@@ -1,4 +1,5 @@
 ﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models.Create;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -25,5 +26,10 @@ public interface IUsers
 	[Get("/users/{id}")]
 	Task<User> GetAsync(
 		int id,
+		CancellationToken cancellationToken);
+
+	[Post("/users")]
+	Task<string> PostAsync(
+		[Body] UserCreate user,
 		CancellationToken cancellationToken);
 }

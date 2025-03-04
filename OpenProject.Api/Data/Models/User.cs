@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using OpenProject.Api.Enums;
+using System.Text.Json.Serialization;
 
 namespace OpenProject.Api.Data.Models;
 
@@ -50,7 +51,7 @@ public class User : IdentifiedItem<int>, INamed, IHasTimestamps
 	/// <summary>
 	/// The current activation status of the user (see below)
 	/// </summary>
-	public required string Status { get; set; }
+	public required UserStatus Status { get; set; }
 
 	/// <summary>
 	/// User’s language
