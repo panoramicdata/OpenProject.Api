@@ -45,6 +45,7 @@ public class OpenProjectClient : IDisposable
 		Users = RefitFor(Users!);
 		Groups = RefitFor(Groups!);
 		Memberships = RefitFor(Memberships!);
+		Versions = RefitFor(Versions!);
 		Views = RefitFor(Views!);
 		WorkPackages = RefitFor(WorkPackages!);
 		Types = RefitFor(Types!);
@@ -107,6 +108,9 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc>/>
 	public IMemberships Memberships { get; }
+
+	/// <inheritdoc>/>
+	public IVersions Versions { get; }
 
 	/// <inheritdoc />
 	public IViews Views { get; }
