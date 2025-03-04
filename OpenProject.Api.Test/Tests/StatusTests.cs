@@ -8,10 +8,22 @@ public class StatusTests(
 	public async Task GetAsync_Succeeds()
 	{
 		// Get
-		var projectStatusRefetch = await OpenProjectClient
+		var items = await OpenProjectClient
 			.Statuses
-			.GetAsync(1, default);
+			.GetAllAsync(default);
 
-		projectStatusRefetch.Should().NotBeNull();
+		items.Should().NotBeNull();
+		items.Embedded.Should().NotBeNull();
+
+		items.Embedded.Elements.Should().NotBeNull();
+
+		// Re-fetch each
+		foreach (var item in items.Embedded.Elements)
+		{
+			var refetchedItem = await OpenProjectClient
+				.Statuses
+				.GetAsync(item.Id, default);
+			refetchedItem.Should().NotBeNull();
+		}
 	}
 }

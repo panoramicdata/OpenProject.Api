@@ -9,6 +9,15 @@ namespace OpenProject.Api.Interfaces.Controllers;
 public interface IStatuses
 {
 	/// <summary>
+	/// Get all Statuses
+	/// </summary>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Get("/statuses")]
+	Task<OpenProjectItemSet<Status>> GetAllAsync(
+		CancellationToken cancellationToken);
+
+	/// <summary>
 	/// Get Status of Work Package by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
