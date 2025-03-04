@@ -34,6 +34,7 @@ public class OpenProjectClient : IDisposable
 		News = RefitFor(News!);
 		Principals = RefitFor(Principals!);
 		Projects = RefitFor(Projects!);
+		Roles = RefitFor(Roles!);
 		Statuses = RefitFor(Statuses!);
 		Queries = RefitFor(Queries!);
 		Users = RefitFor(Users!);
@@ -66,8 +67,11 @@ public class OpenProjectClient : IDisposable
 	/// <inheritdoc />
 	public IProjects Projects { get; }
 
+	/// <inheritdoc />
 	public ICategories Categories { get; }
 
+	/// <inheritdoc />
+	public IRoles Roles { get; }
 	/// <inheritdoc />
 	public IStatuses Statuses { get; }
 
