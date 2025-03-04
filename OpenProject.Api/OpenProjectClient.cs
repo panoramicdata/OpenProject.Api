@@ -30,6 +30,7 @@ public class OpenProjectClient : IDisposable
 
 		Actions = RefitFor(Actions!);
 		Categories = RefitFor(Categories!);
+		Configuration = RefitFor(Configuration!);
 		Documents = RefitFor(Documents!);
 		Grids = RefitFor(Grids!);
 		HelpTexts = RefitFor(HelpTexts!);
@@ -58,6 +59,9 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IActions Actions { get; }
+
+	/// <inheritdoc />
+	public IConfiguration Configuration { get; }
 
 	/// <inheritdoc />
 	public IDocuments Documents { get; }
