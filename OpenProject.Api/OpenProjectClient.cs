@@ -30,6 +30,7 @@ public class OpenProjectClient : IDisposable
 
 		Actions = RefitFor(Actions!);
 		Categories = RefitFor(Categories!);
+		Documents = RefitFor(Documents!);
 		Grids = RefitFor(Grids!);
 		HelpTexts = RefitFor(HelpTexts!);
 		News = RefitFor(News!);
@@ -57,6 +58,9 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IActions Actions { get; }
+
+	/// <inheritdoc />
+	public IDocuments Documents { get; }
 
 	/// <inheritdoc />
 	public IGrids Grids { get; }
