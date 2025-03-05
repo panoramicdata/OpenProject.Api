@@ -1,4 +1,5 @@
 ﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models.Create;
 using OpenProject.Api.Queries;
 
 namespace OpenProject.Api.Interfaces.Controllers;
@@ -38,5 +39,17 @@ public interface IWorkPackages
 		Filters? filters,
 		int? pageSize,
 		SortBy? sortBy,
+		CancellationToken cancellationToken);
+
+
+	/// <summary>
+	/// Create a Work Package and return the created entity
+	/// </summary>
+	/// <param name="entity"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Post("/work_packages")]
+	Task<WorkPackage> CreateAsync(
+		[Body] WorkPackageCreate entity,
 		CancellationToken cancellationToken);
 }
