@@ -72,4 +72,26 @@ public class ProjectTests(
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
 	}
+
+	[Fact]
+	public async Task GetWorkPackagesAsync_Succeeds()
+	{
+		var items = await OpenProjectClient
+			.Projects
+			.GetAllAsync(default);
+
+		items.Should().NotBeNull();
+		items.Embedded.Should().NotBeNull();
+		items.Embedded.Elements.Should().NotBeNull();
+
+		foreach (var item in items.Embedded.Elements)
+		{
+			// Get
+			var workPackages = await OpenProjectClient
+				.Projects
+				.GetWorkPackagesAsync(item.Id, default);
+
+			workPackages.Should().NotBeNull();
+		}
+	}
 }

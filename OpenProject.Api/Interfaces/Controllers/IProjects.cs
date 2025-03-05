@@ -65,4 +65,15 @@ public interface IProjects
 	[Get("/projects/available_parent_projects")]
 	Task<OpenProjectItemSet<Project>> GetAvailableParentProjectsAsync(
 		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Returns the work packages of a project
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Get("/projects/{id}/work_packages")]
+	Task<OpenProjectItemSet<WorkPackage>> GetWorkPackagesAsync(
+		int id,
+		CancellationToken cancellationToken);
 }
