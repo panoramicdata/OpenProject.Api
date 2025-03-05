@@ -1,4 +1,5 @@
-﻿using Version = OpenProject.Api.Data.Models.Version;
+﻿using OpenProject.Api.Data.Models;
+using Version = OpenProject.Api.Data.Models.Version;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -24,4 +25,12 @@ public interface IVersions
 	/// <returns></returns>
 	[Get("/versions/{id}")]
 	Task<Version> GetAsync(int id, CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Gets a list of projects in which a version can be created in. The list contains all projects in which the user issuing the request has the manage versions permissions.
+	/// </summary>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Get("/versions/available_projects")]
+	Task<OpenProjectItemSet<Project>> GetAvailableProjectsAsync(CancellationToken cancellationToken);
 }
