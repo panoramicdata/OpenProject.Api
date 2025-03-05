@@ -52,4 +52,9 @@ public interface IWorkPackages
 	Task<WorkPackage> CreateAsync(
 		[Body] WorkPackageCreate entity,
 		CancellationToken cancellationToken);
+
+	[Delete("/work_packages/{id}")]
+	Task DeleteAsync(
+		int id,
+		CancellationToken cancellationToken);
 }

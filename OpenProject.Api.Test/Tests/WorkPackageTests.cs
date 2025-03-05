@@ -49,5 +49,36 @@ public class WorkPackageTests(
 
 		item.Should().NotBeNull();
 		item.ItemType.Should().Be("WorkPackage");
+
+		// Delete
+		await OpenProjectClient
+			.WorkPackages
+			.DeleteAsync(item.Id, default);
+	}
+
+	[Fact]
+	public async Task DeleteAsync_Succeeds()
+	{
+		// Create
+		var dataToSend = new WorkPackageCreate
+		{
+			Links = new WorkPackageCreateLinks
+			{
+				Project = new HrefItem { Href = "/api/v3/projects/1" },
+				Type = new HrefItem { Href = "/api/v3/types/1" }
+			},
+			Subject = "Test Work Package"
+		};
+		var item = await OpenProjectClient
+			.WorkPackages
+			.CreateAsync(dataToSend, default);
+
+		item.Should().NotBeNull();
+		item.ItemType.Should().Be("WorkPackage");
+
+		// Delete
+		await OpenProjectClient
+			.WorkPackages
+			.DeleteAsync(item.Id, default);
 	}
 }
