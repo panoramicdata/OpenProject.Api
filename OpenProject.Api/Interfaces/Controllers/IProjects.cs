@@ -1,4 +1,5 @@
 using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models.Create;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -15,7 +16,7 @@ public interface IProjects
 	/// <returns>Task of ProjectModel</returns>
 	[Post("/projects")]
 	Task<Project> CreateAsync(
-		[Body] Project entity,
+		[Body] ProjectCreate entity,
 		CancellationToken cancellationToken);
 
 	/// <summary>
@@ -41,9 +42,9 @@ public interface IProjects
 	/// Deletes a project
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
-	/// <returns>Task of ProjectModel</returns>
+	/// <returns>Task</returns>
 	[Delete("/projects/{id}")]
-	Task DeleteAsync(
+	Task<IApiResponse> DeleteAsync(
 		int id,
 		CancellationToken cancellationToken);
 

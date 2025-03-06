@@ -1,4 +1,6 @@
-﻿namespace OpenProject.Api.Test.Tests;
+﻿using OpenProject.Api.Data.Models.Create;
+
+namespace OpenProject.Api.Test.Tests;
 
 public class ProjectTests(
 	ITestOutputHelper testOutputHelper,
@@ -36,6 +38,50 @@ public class ProjectTests(
 
 			projectRefetch.Should().NotBeNull();
 		}
+	}
+
+	[Fact]
+	public async Task CreateAsync_Succeeds()
+	{
+		var project = new ProjectCreate
+		{
+			Name = "Test Project",
+			Identifier = "test-project",
+		};
+
+		// Create
+		var createdProject = await OpenProjectClient
+			.Projects
+			.CreateAsync(project, default);
+		createdProject.Should().NotBeNull();
+
+		// Delete
+		await OpenProjectClient
+			.Projects
+			.DeleteAsync(createdProject.Id, default);
+	}
+
+	[Fact]
+	public async Task DeleteAsync_Succeeds()
+	{
+		var project = new ProjectCreate
+		{
+			Name = "Test Project",
+			Identifier = "test-project",
+		};
+
+		// Create
+		var createdProject = await OpenProjectClient
+			.Projects
+			.CreateAsync(project, default);
+		createdProject.Should().NotBeNull();
+
+		// Delete
+		var response = await OpenProjectClient
+			.Projects
+			.DeleteAsync(createdProject.Id, default);
+
+		response.IsSuccessStatusCode.Should().BeTrue();
 	}
 
 	[Fact]

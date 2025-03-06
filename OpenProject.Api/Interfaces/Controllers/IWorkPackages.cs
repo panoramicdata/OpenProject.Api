@@ -53,8 +53,14 @@ public interface IWorkPackages
 		[Body] WorkPackageCreate entity,
 		CancellationToken cancellationToken);
 
+	/// <summary>
+	/// Delete a Work Package by ID
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
 	[Delete("/work_packages/{id}")]
-	Task DeleteAsync(
+	Task<IApiResponse> DeleteAsync(
 		int id,
 		CancellationToken cancellationToken);
 }
