@@ -1,5 +1,6 @@
 ﻿using OpenProject.Api.Data.CustomLinks;
 using OpenProject.Api.Data.Models.Create;
+using OpenProject.Api.Enums;
 
 namespace OpenProject.Api.Test.Tests;
 
@@ -43,7 +44,7 @@ public class WorkPackageTests(
 			Subject = "Test Work Package",
 			Description = new()
 			{
-				Format = "markdown",
+				Format = Format.Markdown,
 				Raw = "This is a test work package",
 				Html = string.Empty,
 			},
