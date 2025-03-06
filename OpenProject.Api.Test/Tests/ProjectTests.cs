@@ -1,4 +1,5 @@
 ﻿using OpenProject.Api.Data.Models.Create;
+using OpenProject.Api.Data.Models.Update;
 
 namespace OpenProject.Api.Test.Tests;
 
@@ -82,6 +83,42 @@ public class ProjectTests(
 			.DeleteAsync(createdProject.Id, default);
 
 		response.IsSuccessStatusCode.Should().BeTrue();
+	}
+
+	[Fact]
+	public async Task UpdateAsync_Succeeds()
+	{
+		var project = new ProjectCreate
+		{
+			Name = "Test Project",
+			Identifier = "test-project",
+		};
+
+		// Create
+		var createdProject = await OpenProjectClient
+			.Projects
+			.CreateAsync(project, default);
+
+		createdProject.Should().NotBeNull();
+
+		// Update
+		var updateProject = new ProjectUpdate
+		{
+			Name = "Test Project Updated",
+			Identifier = "test-project-updated",
+		};
+
+		var updatedProject = await OpenProjectClient
+			.Projects
+			.UpdateAsync(createdProject.Id, updateProject, default);
+
+		updatedProject.Should().NotBeNull();
+		updatedProject.Name.Should().Be(updateProject.Name);
+
+		// Delete
+		await OpenProjectClient
+			.Projects
+			.DeleteAsync(updatedProject.Id, default);
 	}
 
 	[Fact]

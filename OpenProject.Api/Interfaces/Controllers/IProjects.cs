@@ -1,5 +1,6 @@
 using OpenProject.Api.Data.Models;
 using OpenProject.Api.Data.Models.Create;
+using OpenProject.Api.Data.Models.Update;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -39,13 +40,26 @@ public interface IProjects
 		CancellationToken cancellationToken);
 
 	/// <summary>
-	/// Deletes a project
+	/// Deletes a project by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task</returns>
 	[Delete("/projects/{id}")]
 	Task<IApiResponse> DeleteAsync(
 		int id,
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Update a Project by ID
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="entity"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Patch("/projects/{id}")]
+	Task<Project> UpdateAsync(
+		int id,
+		[Body] ProjectUpdate entity,
 		CancellationToken cancellationToken);
 
 	/// <summary>
