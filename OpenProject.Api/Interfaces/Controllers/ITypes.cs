@@ -25,7 +25,18 @@ public interface ITypes
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/types")]
-	Task<OpenProjectItemSet<Data.Models.Type>> GetAsync(
+	Task<OpenProjectItemSet<Data.Models.Type>> GetAllAsync(
 		[Query] Filters filters,
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Get a Type by ID
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Get("/types/{id}")]
+	Task<Data.Models.Type> GetAsync(
+		int id,
 		CancellationToken cancellationToken);
 }
