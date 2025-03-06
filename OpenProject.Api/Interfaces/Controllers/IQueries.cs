@@ -1,4 +1,5 @@
 ﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models.Create;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -15,6 +16,28 @@ public interface IQueries
 	/// <returns></returns>
 	[Get("/queries")]
 	public Task<OpenProjectItemSet<Query>> GetAllAsync(CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Creates a new Query and returns a Query (with the writable and readonly properties)
+	/// </summary>
+	/// <param name="query"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Post("/queries")]
+	public Task<Query> CreateAsync(
+		[Body] QueryCreate query,
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Delete a Query by ID
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Delete("/queries/{id}")]
+	public Task<IApiResponse> DeleteAsync(
+		int id,
+		CancellationToken cancellationToken);
 
 	/// <summary>
 	/// Get Query by ID
