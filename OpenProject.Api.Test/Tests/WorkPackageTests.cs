@@ -38,9 +38,15 @@ public class WorkPackageTests(
 			Links = new WorkPackageCreateLinks
 			{
 				Project = new HrefItem { Href = "/api/v3/projects/1" },
-				Type = new HrefItem { Href = "/api/v3/types/1" }
+				Type = new HrefItem { Href = "/api/v3/types/1" },
 			},
-			Subject = "Test Work Package"
+			Subject = "Test Work Package",
+			Description = new()
+			{
+				Format = "markdown",
+				Raw = "This is a test work package",
+				Html = string.Empty,
+			},
 		};
 
 		var item = await OpenProjectClient
