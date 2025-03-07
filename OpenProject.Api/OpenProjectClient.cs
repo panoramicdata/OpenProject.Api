@@ -40,6 +40,7 @@ public class OpenProjectClient : IDisposable
 		Principals = RefitFor(Principals!);
 		Projects = RefitFor(Projects!);
 		Roles = RefitFor(Roles!);
+		Root = RefitFor(Root!);
 		Relations = RefitFor(Relations!);
 		Statuses = RefitFor(Statuses!);
 		TimeEntries = RefitFor(TimeEntries!);
@@ -96,6 +97,8 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IRoles Roles { get; }
+
+	public IRoot Root { get; }
 
 	public IRelations Relations { get; }
 
