@@ -1,4 +1,5 @@
 ﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models.Create;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -17,6 +18,17 @@ public interface INews
 	public Task<OpenProjectItemSet<News>> GetAllAsync(CancellationToken cancellationToken);
 
 	/// <summary>
+	/// Create a new News article
+	/// </summary>
+	/// <param name="newsCreate"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Post("/news")]
+	public Task<News> CreateAsync(
+		[Body] NewsCreate newsCreate,
+		CancellationToken cancellationToken);
+
+	/// <summary>
 	/// Get News article by ID
 	/// </summary>
 	/// <param name="id"></param>
@@ -24,6 +36,17 @@ public interface INews
 	/// <returns></returns>
 	[Get("/news/{id}")]
 	public Task<OpenProjectItemSet<News>> GetAsync(
+		int id,
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Deletes a News article by ID
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Delete("/news/{id}")]
+	public Task<IApiResponse> DeleteAsync(
 		int id,
 		CancellationToken cancellationToken);
 }
