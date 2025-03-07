@@ -1,4 +1,5 @@
 ﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models.Create;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -18,12 +19,34 @@ public interface IGroups
 		CancellationToken cancellationToken);
 
 	/// <summary>
+	/// Createa a new Group
+	/// </summary>
+	/// <param name="groupCreate"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Post("/groups")]
+	Task<Group> CreateAsync(
+		[Body] GroupCreate groupCreate,
+		CancellationToken cancellationToken);
+
+	/// <summary>
 	/// Get Group by ID
 	/// </summary>
 	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>
 	[Get("/groups/{id}")]
 	Task<Group> GetAsync(
+		int id,
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Deletes a Group by ID
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="cancellationToken"></param>
+	/// <returns></returns>
+	[Delete("/groups/{id}")]
+	Task<IApiResponse> DeleteAsync(
 		int id,
 		CancellationToken cancellationToken);
 }
