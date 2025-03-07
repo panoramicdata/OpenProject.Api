@@ -35,6 +35,7 @@ public class OpenProjectClient : IDisposable
 		Grids = RefitFor(Grids!);
 		HelpTexts = RefitFor(HelpTexts!);
 		News = RefitFor(News!);
+		MyPreferences = RefitFor(MyPreferences!);
 		Notifications = RefitFor(Notifications!);
 		Principals = RefitFor(Principals!);
 		Projects = RefitFor(Projects!);
@@ -75,6 +76,8 @@ public class OpenProjectClient : IDisposable
 
 	/// <inheritdoc />
 	public IHelpTexts HelpTexts { get; }
+
+	public IMyPreferences MyPreferences { get; }
 
 	/// <inheritdoc />
 	public INews News { get; }
