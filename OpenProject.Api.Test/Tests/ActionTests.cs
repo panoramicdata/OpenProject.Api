@@ -1,4 +1,5 @@
 ﻿namespace OpenProject.Api.Test.Tests;
+
 public class ActionTests(
 	ITestOutputHelper testOutputHelper,
 	Fixture fixture) : TestBase(testOutputHelper, fixture)

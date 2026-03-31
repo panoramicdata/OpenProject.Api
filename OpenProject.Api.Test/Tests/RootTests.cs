@@ -10,7 +10,7 @@ Fixture fixture) : TestBase(testOutputHelper, fixture)
 		// Get
 		var items = await OpenProjectClient
 			.Root
-			.GetApiInformationAsync(default);
+			.GetApiInformationAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 	}

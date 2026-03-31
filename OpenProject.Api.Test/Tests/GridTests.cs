@@ -9,7 +9,7 @@ public class GridTests(
 		// Get
 		var items = await OpenProjectClient
 			.Grids
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -21,7 +21,7 @@ public class GridTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Grids
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}

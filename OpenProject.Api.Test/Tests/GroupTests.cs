@@ -12,7 +12,7 @@ public class GroupTests(
 		// Get
 		var items = await OpenProjectClient
 			.Groups
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -24,7 +24,7 @@ public class GroupTests(
 		// Get
 		var items = await OpenProjectClient
 			.Groups
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -36,7 +36,7 @@ public class GroupTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Groups
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}
@@ -52,7 +52,7 @@ public class GroupTests(
 
 		var response = await OpenProjectClient
 			.Groups
-			.CreateAsync(newGroup, default);
+			.CreateAsync(newGroup, CancellationToken);
 
 		response.Should().NotBeNull();
 		response.Name.Should().Be(newGroup.Name);
@@ -60,7 +60,7 @@ public class GroupTests(
 		// Delete
 		await OpenProjectClient
 			.Groups
-			.DeleteAsync(response.Id, default);
+			.DeleteAsync(response.Id, CancellationToken);
 	}
 
 	[Fact]
@@ -74,7 +74,7 @@ public class GroupTests(
 
 		var response = await OpenProjectClient
 			.Groups
-			.CreateAsync(newGroup, default);
+			.CreateAsync(newGroup, CancellationToken);
 
 		response.Should().NotBeNull();
 		response.Name.Should().Be(newGroup.Name);
@@ -82,7 +82,7 @@ public class GroupTests(
 		// Delete
 		var deleteResponse = await OpenProjectClient
 			.Groups
-			.DeleteAsync(response.Id, default);
+			.DeleteAsync(response.Id, CancellationToken);
 
 		deleteResponse.Should().NotBeNull();
 		deleteResponse.IsSuccessStatusCode.Should().BeTrue();

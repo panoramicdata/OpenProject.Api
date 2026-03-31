@@ -9,7 +9,7 @@ Fixture fixture) : TestBase(testOutputHelper, fixture)
 	{
 		var items = await OpenProjectClient
 			.Notifications
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -20,7 +20,7 @@ Fixture fixture) : TestBase(testOutputHelper, fixture)
 	{
 		var items = await OpenProjectClient
 			.Notifications
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -32,7 +32,7 @@ Fixture fixture) : TestBase(testOutputHelper, fixture)
 			// Get
 			var itemRefetch = await OpenProjectClient
 				.Notifications
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 
 			itemRefetch.Should().NotBeNull();
 		}

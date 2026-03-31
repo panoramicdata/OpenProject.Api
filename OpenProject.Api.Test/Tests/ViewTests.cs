@@ -10,7 +10,7 @@ public class ViewTests(
 		// Get
 		var items = await OpenProjectClient
 			.Views
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -22,7 +22,7 @@ public class ViewTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Views
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}

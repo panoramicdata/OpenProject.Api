@@ -11,7 +11,7 @@ public class QueriesTests(
 		// Get
 		var items = await OpenProjectClient
 			.Queries
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -23,7 +23,7 @@ public class QueriesTests(
 		// Get
 		var items = await OpenProjectClient
 			.Queries
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -35,7 +35,7 @@ public class QueriesTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Queries
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}
@@ -50,14 +50,14 @@ public class QueriesTests(
 
 		// Create
 		var createResponse = await OpenProjectClient
-			.Queries.CreateAsync(query, default);
+			.Queries.CreateAsync(query, CancellationToken);
 
 		createResponse.Should().NotBeNull();
 		createResponse.Name.Should().Be(query.Name);
 
 		// Delete
 		await OpenProjectClient
-			.Queries.DeleteAsync(createResponse.Id, default);
+			.Queries.DeleteAsync(createResponse.Id, CancellationToken);
 	}
 
 	[Fact]
@@ -70,14 +70,14 @@ public class QueriesTests(
 
 		// Create
 		var createResponse = await OpenProjectClient
-			.Queries.CreateAsync(query, default);
+			.Queries.CreateAsync(query, CancellationToken);
 
 		createResponse.Should().NotBeNull();
 		createResponse.Name.Should().Be(query.Name);
 
 		// Delete
 		var deleteResponse = await OpenProjectClient
-			.Queries.DeleteAsync(createResponse.Id, default);
+			.Queries.DeleteAsync(createResponse.Id, CancellationToken);
 
 		deleteResponse.Should().NotBeNull();
 		deleteResponse.IsSuccessStatusCode.Should().BeTrue();

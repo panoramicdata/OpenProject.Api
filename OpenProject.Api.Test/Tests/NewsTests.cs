@@ -11,7 +11,7 @@ public class NewsTests(
 		// Get
 		var items = await OpenProjectClient
 			.News
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -23,7 +23,7 @@ public class NewsTests(
 		// Get
 		var items = await OpenProjectClient
 			.News
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -35,7 +35,7 @@ public class NewsTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.News
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}
@@ -59,7 +59,7 @@ public class NewsTests(
 		// Create
 		var item = await OpenProjectClient
 			.News
-			.CreateAsync(newNews, default);
+			.CreateAsync(newNews, CancellationToken);
 
 		item.Should().NotBeNull();
 		item.Title.Should().Be(newNews.Title);
@@ -67,7 +67,7 @@ public class NewsTests(
 		// Delete
 		await OpenProjectClient
 			.News
-			.DeleteAsync(item.Id, default);
+			.DeleteAsync(item.Id, CancellationToken);
 	}
 
 	[Fact]
@@ -89,14 +89,14 @@ public class NewsTests(
 		// Create
 		var item = await OpenProjectClient
 			.News
-			.CreateAsync(newNews, default);
+			.CreateAsync(newNews, CancellationToken);
 		item.Should().NotBeNull();
 		item.Title.Should().Be(newNews.Title);
 
 		// Delete
 		var response = await OpenProjectClient
 			.News
-			.DeleteAsync(item.Id, default);
+			.DeleteAsync(item.Id, CancellationToken);
 
 		response.Should().NotBeNull();
 		response.IsSuccessStatusCode.Should().BeTrue();

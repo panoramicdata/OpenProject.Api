@@ -10,7 +10,7 @@ public class StatusTests(
 		// Get
 		var items = await OpenProjectClient
 			.Statuses
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -22,7 +22,7 @@ public class StatusTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Statuses
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}

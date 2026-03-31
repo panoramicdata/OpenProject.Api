@@ -14,7 +14,7 @@ public class UserTests(
 		// Get
 		var items = await OpenProjectClient
 			.Users
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -26,7 +26,7 @@ public class UserTests(
 		// Get
 		var items = await OpenProjectClient
 			.Users
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -38,7 +38,7 @@ public class UserTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Users
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}
@@ -61,14 +61,14 @@ public class UserTests(
 		// Create
 		var item = await OpenProjectClient
 			.Users
-			.PostAsync(newUser, default);
+			.PostAsync(newUser, CancellationToken);
 
 		item.Should().NotBeNull();
 
 		// Delete
 		var result = await OpenProjectClient
 			.Users
-			.DeleteAsync(item.Id, default);
+			.DeleteAsync(item.Id, CancellationToken);
 
 		result.Should().NotBeNull();
 		result.Should().Contain("null");
@@ -92,7 +92,7 @@ public class UserTests(
 		// Create
 		var item = await OpenProjectClient
 			.Users
-			.PostAsync(newUser, default);
+			.PostAsync(newUser, CancellationToken);
 
 		// Update
 		var updatedItem = await OpenProjectClient
@@ -107,7 +107,7 @@ public class UserTests(
 				IsAdmin = false,
 				Status = UserStatus.Active,
 				Language = "en"
-			}, default);
+			}, CancellationToken);
 
 		updatedItem.Should().NotBeNull();
 		updatedItem.FirstName.Should().Be("Elliot - EDITED");
@@ -115,7 +115,7 @@ public class UserTests(
 		// Delete
 		var result = await OpenProjectClient
 			.Users
-			.DeleteAsync(item.Id, default);
+			.DeleteAsync(item.Id, CancellationToken);
 
 		result.Should().NotBeNull();
 		result.Should().Contain("null");
@@ -140,14 +140,14 @@ public class UserTests(
 		// Create
 		var item = await OpenProjectClient
 			.Users
-			.PostAsync(newUser, default);
+			.PostAsync(newUser, CancellationToken);
 
 		item.Should().NotBeNull();
 
 		// Delete
 		var result = await OpenProjectClient
 			.Users
-			.DeleteAsync(item.Id, default);
+			.DeleteAsync(item.Id, CancellationToken);
 
 		result.Should().NotBeNull();
 		result.Should().Contain("null");

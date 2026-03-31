@@ -10,7 +10,7 @@ public class CategoryTests(
 		// Get
 		var projects = await OpenProjectClient
 			.Projects
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		projects.Should().NotBeNull();
 		projects.Embedded.Should().NotBeNull();
@@ -21,7 +21,7 @@ public class CategoryTests(
 		{
 			var projectCategories = await OpenProjectClient
 				.Categories
-				.GetForProjectAsync(project.Id, default);
+				.GetForProjectAsync(project.Id, CancellationToken);
 			projectCategories.Should().NotBeNull();
 			projectCategories.Links.Should().NotBeNull();
 		}

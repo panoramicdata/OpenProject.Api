@@ -10,7 +10,7 @@ Fixture fixture) : TestBase(testOutputHelper, fixture)
 		// Get
 		var config = await OpenProjectClient
 			.Configuration
-			.GetAsync(default);
+			.GetAsync(CancellationToken);
 
 		config.Should().NotBeNull();
 

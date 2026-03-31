@@ -10,7 +10,7 @@ public class RolesTests(
 		// Get
 		var items = await OpenProjectClient
 			.Roles
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -22,7 +22,7 @@ public class RolesTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Roles
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}

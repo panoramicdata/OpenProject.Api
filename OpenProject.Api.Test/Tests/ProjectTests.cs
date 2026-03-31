@@ -12,7 +12,7 @@ public class ProjectTests(
 	{
 		var items = await OpenProjectClient
 			.Projects
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -23,7 +23,7 @@ public class ProjectTests(
 	{
 		var items = await OpenProjectClient
 			.Projects
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -35,7 +35,7 @@ public class ProjectTests(
 			// Get
 			var projectRefetch = await OpenProjectClient
 				.Projects
-				.GetAsync(project.Id, default);
+				.GetAsync(project.Id, CancellationToken);
 
 			projectRefetch.Should().NotBeNull();
 		}
@@ -53,13 +53,13 @@ public class ProjectTests(
 		// Create
 		var createdProject = await OpenProjectClient
 			.Projects
-			.CreateAsync(project, default);
+			.CreateAsync(project, CancellationToken);
 		createdProject.Should().NotBeNull();
 
 		// Delete
 		await OpenProjectClient
 			.Projects
-			.DeleteAsync(createdProject.Id, default);
+			.DeleteAsync(createdProject.Id, CancellationToken);
 	}
 
 	[Fact]
@@ -74,13 +74,13 @@ public class ProjectTests(
 		// Create
 		var createdProject = await OpenProjectClient
 			.Projects
-			.CreateAsync(project, default);
+			.CreateAsync(project, CancellationToken);
 		createdProject.Should().NotBeNull();
 
 		// Delete
 		var response = await OpenProjectClient
 			.Projects
-			.DeleteAsync(createdProject.Id, default);
+			.DeleteAsync(createdProject.Id, CancellationToken);
 
 		response.IsSuccessStatusCode.Should().BeTrue();
 	}
@@ -97,7 +97,7 @@ public class ProjectTests(
 		// Create
 		var createdProject = await OpenProjectClient
 			.Projects
-			.CreateAsync(project, default);
+			.CreateAsync(project, CancellationToken);
 
 		createdProject.Should().NotBeNull();
 
@@ -110,7 +110,7 @@ public class ProjectTests(
 
 		var updatedProject = await OpenProjectClient
 			.Projects
-			.UpdateAsync(createdProject.Id, updateProject, default);
+			.UpdateAsync(createdProject.Id, updateProject, CancellationToken);
 
 		updatedProject.Should().NotBeNull();
 		updatedProject.Name.Should().Be(updateProject.Name);
@@ -118,7 +118,7 @@ public class ProjectTests(
 		// Delete
 		await OpenProjectClient
 			.Projects
-			.DeleteAsync(updatedProject.Id, default);
+			.DeleteAsync(updatedProject.Id, CancellationToken);
 	}
 
 	[Fact]
@@ -126,7 +126,7 @@ public class ProjectTests(
 	{
 		var items = await OpenProjectClient
 			.Projects
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -138,7 +138,7 @@ public class ProjectTests(
 			// Get
 			var availableAssignees = await OpenProjectClient
 				.Projects
-				.GetAvailableAssigneesAsync(item.Id, default);
+				.GetAvailableAssigneesAsync(item.Id, CancellationToken);
 
 			availableAssignees.Should().NotBeNull();
 		}
@@ -150,7 +150,7 @@ public class ProjectTests(
 		// Get
 		var items = await OpenProjectClient
 			.Projects
-			.GetAvailableParentProjectsAsync(default);
+			.GetAvailableParentProjectsAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -161,7 +161,7 @@ public class ProjectTests(
 	{
 		var items = await OpenProjectClient
 			.Projects
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -172,7 +172,7 @@ public class ProjectTests(
 			// Get
 			var workPackages = await OpenProjectClient
 				.Projects
-				.GetWorkPackagesAsync(item.Id, default);
+				.GetWorkPackagesAsync(item.Id, CancellationToken);
 
 			workPackages.Should().NotBeNull();
 		}

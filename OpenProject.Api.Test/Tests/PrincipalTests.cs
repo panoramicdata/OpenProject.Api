@@ -10,7 +10,7 @@ public class PrincipalTests(
 		// Get
 		var items = await OpenProjectClient
 			.Principals
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -22,7 +22,7 @@ public class PrincipalTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Principals
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}

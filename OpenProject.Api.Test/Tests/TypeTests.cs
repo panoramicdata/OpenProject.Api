@@ -10,7 +10,7 @@ public class TypeTests(
 		// Get
 		var workPackageTypes = await OpenProjectClient
 			.Types
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		workPackageTypes.Should().NotBeNull();
 		workPackageTypes.Embedded.Should().NotBeNull();
@@ -22,7 +22,7 @@ public class TypeTests(
 		// Get
 		var workPackageType = await OpenProjectClient
 			.Types
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		workPackageType.Should().NotBeNull();
 		workPackageType.Embedded.Should().NotBeNull();
@@ -32,7 +32,7 @@ public class TypeTests(
 		foreach (var item in workPackageType.Embedded.Elements)
 		{
 			var response = await OpenProjectClient.
-				Types.GetAsync(item.Id, default);
+				Types.GetAsync(item.Id, CancellationToken);
 
 			response.Should().NotBeNull();
 			response.Id.Should().Be(item.Id);

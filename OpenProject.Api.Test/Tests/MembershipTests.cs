@@ -9,7 +9,7 @@ public class MembershipTests(
 	{
 		var items = await OpenProjectClient
 			.Memberships
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -20,7 +20,7 @@ public class MembershipTests(
 	{
 		var items = await OpenProjectClient
 			.Memberships
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -32,7 +32,7 @@ public class MembershipTests(
 			// Get
 			var itemRefetch = await OpenProjectClient
 				.Memberships
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 
 			itemRefetch.Should().NotBeNull();
 		}

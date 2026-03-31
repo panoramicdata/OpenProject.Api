@@ -10,7 +10,7 @@ public class VersionTests(
 		// Get
 		var items = await OpenProjectClient
 			.Versions
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -22,7 +22,7 @@ public class VersionTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Versions
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}
@@ -33,7 +33,7 @@ public class VersionTests(
 		// Get
 		var items = await OpenProjectClient
 			.Versions
-			.GetAvailableProjectsAsync(default);
+			.GetAvailableProjectsAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();

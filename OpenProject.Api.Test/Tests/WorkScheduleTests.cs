@@ -10,7 +10,7 @@ public class WorkScheduleTests(
 		// Get
 		var items = await OpenProjectClient
 			.WorkSchedules
-			.GetAllDays(default);
+			.GetAllDays(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -22,7 +22,7 @@ public class WorkScheduleTests(
 		// Get
 		var items = await OpenProjectClient
 			.WorkSchedules
-			.GetAllDays(default);
+			.GetAllDays(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -35,7 +35,7 @@ public class WorkScheduleTests(
 			var date = $"{item.Date:yyyy-MM-dd}";
 			var day = await OpenProjectClient
 				.WorkSchedules
-				.GetDay(date, default);
+				.GetDay(date, CancellationToken);
 
 			day.Should().NotBeNull();
 		}
@@ -47,7 +47,7 @@ public class WorkScheduleTests(
 		// Get
 		var items = await OpenProjectClient
 			.WorkSchedules
-			.GetAllNonWorkingDays(default);
+			.GetAllNonWorkingDays(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -59,7 +59,7 @@ public class WorkScheduleTests(
 		// Get
 		var items = await OpenProjectClient
 			.WorkSchedules
-			.GetAllNonWorkingDays(default);
+			.GetAllNonWorkingDays(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -72,7 +72,7 @@ public class WorkScheduleTests(
 
 			var day = await OpenProjectClient
 				.WorkSchedules
-				.GetDay(date, default);
+				.GetDay(date, CancellationToken);
 			day.Should().NotBeNull();
 		}
 	}
@@ -83,7 +83,7 @@ public class WorkScheduleTests(
 		// Get
 		var items = await OpenProjectClient
 			.WorkSchedules
-			.GetAllWeekDays(default);
+			.GetAllWeekDays(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -95,7 +95,7 @@ public class WorkScheduleTests(
 		// Get
 		var items = await OpenProjectClient
 			.WorkSchedules
-			.GetAllWeekDays(default);
+			.GetAllWeekDays(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -106,7 +106,7 @@ public class WorkScheduleTests(
 		{
 			var day = await OpenProjectClient
 				.WorkSchedules
-				.GetWeekDay(item.Day, default);
+				.GetWeekDay(item.Day, CancellationToken);
 			day.Should().NotBeNull();
 		}
 	}

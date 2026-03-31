@@ -9,7 +9,7 @@ Fixture fixture) : TestBase(testOutputHelper, fixture)
 	{
 		var items = await OpenProjectClient
 			.MyPreferences
-			.GetAsync(default);
+			.GetAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 	}

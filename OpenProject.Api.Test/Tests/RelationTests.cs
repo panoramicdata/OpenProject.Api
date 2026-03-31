@@ -10,7 +10,7 @@ public class RelationTests(
 		// Get
 		var items = await OpenProjectClient
 			.Relations
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -22,7 +22,7 @@ public class RelationTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Relations
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}

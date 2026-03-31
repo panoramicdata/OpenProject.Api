@@ -14,7 +14,7 @@ public class WorkPackageTests(
 		// Get
 		var items = await OpenProjectClient
 			.WorkPackages
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -26,7 +26,7 @@ public class WorkPackageTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.WorkPackages
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}
@@ -52,7 +52,7 @@ public class WorkPackageTests(
 
 		var item = await OpenProjectClient
 			.WorkPackages
-			.CreateAsync(dataToSend, default);
+			.CreateAsync(dataToSend, CancellationToken);
 
 		item.Should().NotBeNull();
 		item.ItemType.Should().Be("WorkPackage");
@@ -60,7 +60,7 @@ public class WorkPackageTests(
 		// Delete
 		await OpenProjectClient
 			.WorkPackages
-			.DeleteAsync(item.Id, default);
+			.DeleteAsync(item.Id, CancellationToken);
 	}
 
 	[Fact]
@@ -78,7 +78,7 @@ public class WorkPackageTests(
 		};
 		var item = await OpenProjectClient
 			.WorkPackages
-			.CreateAsync(dataToSend, default);
+			.CreateAsync(dataToSend, CancellationToken);
 
 		item.Should().NotBeNull();
 		item.ItemType.Should().Be("WorkPackage");
@@ -86,6 +86,6 @@ public class WorkPackageTests(
 		// Delete
 		await OpenProjectClient
 			.WorkPackages
-			.DeleteAsync(item.Id, default);
+			.DeleteAsync(item.Id, CancellationToken);
 	}
 }
