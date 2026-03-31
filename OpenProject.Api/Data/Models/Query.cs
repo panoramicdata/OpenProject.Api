@@ -34,7 +34,7 @@ public class Query : IdentifiedItem<int>, INamed, IHasTimestamps
 	/// <summary>
 	/// Which labels are shown in the timeline, empty when default
 	/// </summary>
-	public IDictionary TimelineLabels { get; set; }
+	public IDictionary TimelineLabels { get; set; } = new Hashtable();
 
 	/// <summary>
 	/// Which zoom level should the timeline be rendered in?

@@ -56,7 +56,7 @@ public class QueriesTests(
 		createResponse.Name.Should().Be(query.Name);
 
 		// Delete
-		var deleteResponse = await OpenProjectClient
+		await OpenProjectClient
 			.Queries.DeleteAsync(createResponse.Id, default);
 	}
 

@@ -65,7 +65,7 @@ public class NewsTests(
 		item.Title.Should().Be(newNews.Title);
 
 		// Delete
-		var response = await OpenProjectClient
+		await OpenProjectClient
 			.News
 			.DeleteAsync(item.Id, default);
 	}

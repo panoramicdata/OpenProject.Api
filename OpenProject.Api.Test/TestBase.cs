@@ -5,6 +5,8 @@ namespace OpenProject.Api.Test;
 [Collection("Dependency Injection")]
 public class TestBase : TestBed<Fixture>
 {
+	protected static System.Threading.CancellationToken CancellationToken => TestContext.Current.CancellationToken;
+
 	public OpenProjectClient OpenProjectClient { get; }
 	public ILogger Log { get; }
 

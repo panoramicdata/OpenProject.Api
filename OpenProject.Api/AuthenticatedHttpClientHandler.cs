@@ -26,13 +26,16 @@ public class AuthenticatedHttpClientHandler : HttpClientHandler
 
 		// Get a GUID to uniquely identify the request
 		var guid = Guid.NewGuid();
-		_logger?.LogDebug("{Guid}:{RequestMethod}:{RequestUri}\nHeaders:{Headers}\nBody:{Body}",
-			guid.ToString(),
-			request.Method,
-			request.RequestUri,
-			request.Headers,
-			request.Content is null ? null : await request.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false)
-			);
+		if (_logger?.IsEnabled(LogLevel.Debug) == true)
+		{
+			_logger.LogDebug("{Guid}:{RequestMethod}:{RequestUri}\nHeaders:{Headers}\nBody:{Body}",
+				guid.ToString(),
+				request.Method,
+				request.RequestUri,
+				request.Headers,
+				request.Content is null ? null : await request.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false)
+				);
+		}
 
 		HttpResponseMessage response;
 		try
@@ -47,10 +50,13 @@ public class AuthenticatedHttpClientHandler : HttpClientHandler
 			throw;
 		}
 
-		_logger?.LogDebug("{Guid}:{ResponseStatusCode}:{Body}",
-			guid.ToString(),
-			response.StatusCode,
-			request.Content is null ? null : await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
+		if (_logger?.IsEnabled(LogLevel.Debug) == true)
+		{
+			_logger.LogDebug("{Guid}:{ResponseStatusCode}:{Body}",
+				guid.ToString(),
+				response.StatusCode,
+				request.Content is null ? null : await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
+		}
 
 		return response;
 	}

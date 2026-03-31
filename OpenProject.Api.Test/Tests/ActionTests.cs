@@ -9,7 +9,7 @@ public class ActionTests(
 		// Get
 		var items = await OpenProjectClient
 			.Actions
-			.GetAllAsync(default);
+			.GetAllAsync(CancellationToken);
 
 		items.Should().NotBeNull();
 		items.Embedded.Should().NotBeNull();
@@ -21,7 +21,7 @@ public class ActionTests(
 		{
 			var refetchedItem = await OpenProjectClient
 				.Actions
-				.GetAsync(item.Id, default);
+				.GetAsync(item.Id, CancellationToken);
 			refetchedItem.Should().NotBeNull();
 		}
 	}

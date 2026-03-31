@@ -2,14 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<AnalysisLevel>latest-recommended</AnalysisLevel>
-		<NeutralLanguage>en</NeutralLanguage>
-		<Copyright>Panoramic Data Limited 2025</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<ApplicationIcon>Icon.ico</ApplicationIcon>
 		<Description>OpenProject REST API</Description>
@@ -18,10 +10,7 @@
 		<RepositoryUrl>https://github.com/panoramicdata/OpenProject.Api</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>open project openproject rest api</PackageTags>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Company>Panoramic Data Limited</Company>
-		<Authors>Panoramic Data Limited</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageReleaseNotes>
 			Initial release
@@ -31,16 +20,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.6.0">
+		<PackageReference Include="AsyncFixer">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.1" />
-		<PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+		<PackageReference Include="Nerdbank.GitVersioning">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Refit" Version="8.0.0" />
+		<PackageReference Include="Refit" />
 	</ItemGroup>
 
 	<ItemGroup>

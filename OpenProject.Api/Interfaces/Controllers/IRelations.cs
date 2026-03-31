@@ -15,7 +15,7 @@ public interface IRelations
 	/// <returns></returns>
 	[Get("/relations")]
 	Task<OpenProjectItemSet<Relation>> GetAllAsync(
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken);
 
 	/// <summary>
 	/// Get Relation by ID
@@ -26,5 +26,5 @@ public interface IRelations
 	[Get("/relations/{id}")]
 	Task<Relation> GetAsync(
 		int id,
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken);
 }

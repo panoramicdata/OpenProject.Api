@@ -1,0 +1,18 @@
+<Project>
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<NeutralLanguage>en</NeutralLanguage>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<Company>Panoramic Data Limited</Company>
+		<Authors>Panoramic Data Limited</Authors>
+		<Copyright>Copyright © $([System.DateTime]::Now.Year) Panoramic Data Limited</Copyright>
+		<NuGetAuditMode>All</NuGetAuditMode>
+	</PropertyGroup>
+
+</Project>

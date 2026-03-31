@@ -58,7 +58,7 @@ public class GroupTests(
 		response.Name.Should().Be(newGroup.Name);
 
 		// Delete
-		var deleteResponse = await OpenProjectClient
+		await OpenProjectClient
 			.Groups
 			.DeleteAsync(response.Id, default);
 	}
