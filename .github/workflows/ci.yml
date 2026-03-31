@@ -34,6 +34,8 @@ jobs:
 
       - name: NuGet Login (Trusted Publishing)
         uses: NuGet/login@v1
+        with:
+          user: panoramicdata
 
       - name: Push to NuGet
         run: dotnet nuget push "nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json
