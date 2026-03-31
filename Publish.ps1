@@ -5,44 +5,19 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$projectName = "OpenProject.Api"
-$projectPath = "$projectName/$projectName.csproj"
-$configuration = "Release"
-$outputDir = "nupkgs"
-
-Write-Host "Publishing $projectName v$Version..." -ForegroundColor Cyan
-
-# Clean
-if (Test-Path $outputDir) {
-	Remove-Item $outputDir -Recurse -Force
+# Check for clean working tree
+$status = git status --porcelain
+if ($status) {
+	throw "Working tree is not clean. Commit or stash changes before publishing.`n$status"
 }
 
-# Restore
-Write-Host "Restoring..." -ForegroundColor Yellow
-dotnet restore
-if ($LASTEXITCODE -ne 0) { throw "Restore failed" }
+# Tag and push
+Write-Host "Tagging v$Version..." -ForegroundColor Cyan
+git tag $Version
+if ($LASTEXITCODE -ne 0) { throw "Failed to create tag $Version" }
 
-# Build
-Write-Host "Building..." -ForegroundColor Yellow
-dotnet build --configuration $configuration --no-restore
-if ($LASTEXITCODE -ne 0) { throw "Build failed" }
+Write-Host "Pushing tag $Version..." -ForegroundColor Yellow
+git push origin $Version
+if ($LASTEXITCODE -ne 0) { throw "Failed to push tag $Version" }
 
-# Test
-Write-Host "Testing..." -ForegroundColor Yellow
-dotnet test --configuration $configuration --no-build --verbosity normal
-if ($LASTEXITCODE -ne 0) { throw "Tests failed" }
-
-# Pack
-Write-Host "Packing..." -ForegroundColor Yellow
-dotnet pack $projectPath --configuration $configuration --no-build --output $outputDir /p:Version=$Version
-if ($LASTEXITCODE -ne 0) { throw "Pack failed" }
-
-# Push
-Write-Host "Pushing to NuGet..." -ForegroundColor Yellow
-$packages = Get-ChildItem "$outputDir/*.nupkg"
-foreach ($package in $packages) {
-	dotnet nuget push $package.FullName --source https://api.nuget.org/v3/index.json
-	if ($LASTEXITCODE -ne 0) { throw "Push failed for $($package.Name)" }
-}
-
-Write-Host "Published $projectName v$Version successfully!" -ForegroundColor Green
+Write-Host "Tag $Version pushed. CI workflow will handle build and publish to NuGet." -ForegroundColor Green
