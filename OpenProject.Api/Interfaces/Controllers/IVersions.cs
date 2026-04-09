@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 using Version = OpenProject.Api.Data.Models.Version;
 
 namespace OpenProject.Api.Interfaces.Controllers;

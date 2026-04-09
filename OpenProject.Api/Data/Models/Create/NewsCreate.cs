@@ -26,6 +26,9 @@ public class NewsCreate
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 	public Formattable? Description { get; set; }
 
+	/// <summary>
+	/// The HAL links for the news item, including the required parent project link.
+	/// </summary>
 	[JsonPropertyName("_links")]
 	public required NewsCreateLinks Links { get; set; }
 }

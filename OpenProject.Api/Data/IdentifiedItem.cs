@@ -20,5 +20,8 @@
 /// </remarks>
 public abstract class IdentifiedItem<T> : ItemBase
 {
+	/// <summary>
+	/// The unique identifier of the item.
+	/// </summary>
 	public required T Id { get; set; }
 }

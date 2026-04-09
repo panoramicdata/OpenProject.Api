@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -11,7 +11,7 @@ public interface ICategories
 	/// <summary>
 	/// Get Categories for a Project
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Returns a Task containing a collection of <see cref="Category"/></returns>
 	[Get("/categories/{projectId}")]
 	Task<OpenProjectItemSet<Category>> GetForProjectAsync(

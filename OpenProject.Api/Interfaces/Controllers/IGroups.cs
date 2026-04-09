@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 using OpenProject.Api.Data.Models.Create;
 
 namespace OpenProject.Api.Interfaces.Controllers;
@@ -12,7 +12,7 @@ public interface IGroups
 	/// <summary>
 	/// Get all Groups
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroups</returns>
 	[Get("/groups")]
 	Task<OpenProjectItemSet<Group>> GetAllAsync(
@@ -32,7 +32,7 @@ public interface IGroups
 	/// <summary>
 	/// Get Group by ID
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>
 	[Get("/groups/{id}")]
 	Task<Group> GetAsync(

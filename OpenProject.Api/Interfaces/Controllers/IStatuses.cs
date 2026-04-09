@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -20,7 +20,7 @@ public interface IStatuses
 	/// <summary>
 	/// Get Status of Work Package by ID
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/statuses/{workPackageId}")]
 	Task<Status> GetAsync(

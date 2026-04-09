@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 using OpenProject.Api.Data.Models.Create;
 using OpenProject.Api.Queries;
 
@@ -13,7 +13,7 @@ public interface IWorkPackages
 	/// <summary>
 	/// Get all Work Packages
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/work_packages")]
 	Task<OpenProjectItemSet<WorkPackage>> GetAllAsync(
@@ -22,7 +22,7 @@ public interface IWorkPackages
 	/// <summary>
 	/// Get Work Package by ID
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/work_packages/{id}")]
 	Task<OpenProjectItemSet<WorkPackage>> GetAsync(
@@ -32,7 +32,7 @@ public interface IWorkPackages
 	/// <summary>
 	/// Get Work Packages based on Filters
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/work_packages")]
 	Task<OpenProjectItemSet<WorkPackage>> GetAsync(

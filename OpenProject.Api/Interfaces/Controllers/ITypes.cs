@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 using OpenProject.Api.Queries;
 
 namespace OpenProject.Api.Interfaces.Controllers;
@@ -13,7 +13,7 @@ public interface ITypes
 	/// <summary>
 	/// Get All Types of Work Packages
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/types")]
 	Task<OpenProjectItemSet<Data.Models.Type>> GetAllAsync(
@@ -22,7 +22,7 @@ public interface ITypes
 	/// <summary>
 	/// Get Types based on Filters
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectStatusModel</returns>
 	[Get("/types")]
 	Task<OpenProjectItemSet<Data.Models.Type>> GetAllAsync(

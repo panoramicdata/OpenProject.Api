@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
@@ -13,6 +14,7 @@
     <File Path="SECURITY.md" />
     <File Path="swagger.v1.json" />
     <File Path="version.json" />
+    <File Path="CONTRIBUTING.md" />
   </Folder>
   <Project Path="OpenProject.Api.Test/OpenProject.Api.Test.csproj" />
   <Project Path="OpenProject.Api/OpenProject.Api.csproj" />

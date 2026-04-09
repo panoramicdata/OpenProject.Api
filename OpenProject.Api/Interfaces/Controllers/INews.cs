@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 using OpenProject.Api.Data.Models.Create;
 
 namespace OpenProject.Api.Interfaces.Controllers;

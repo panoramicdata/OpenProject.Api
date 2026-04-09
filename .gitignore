@@ -8,3 +8,7 @@ nupkgs
 *.snupkg
 /.vs
 appsettings.json
+[Bb]in/
+[Oo]bj/
+.vs/
+nuget-key.txt

@@ -5,5 +5,8 @@
 /// </summary>
 public class HrefItem
 {
+	/// <summary>
+	/// The uniform resource identifier for the item.
+	/// </summary>
 	public required string Href { get; set; }
 }

@@ -11,5 +11,8 @@
 /// <remarks>The remaining properties are Optional</remarks>
 public class NewsCreateLinks
 {
+	/// <summary>
+	/// An API endpoint to the parent project (e.g., "/api/v3/projects/1").
+	/// </summary>
 	public required HrefItem Project { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -11,7 +11,7 @@ public interface IPrincipals
 	/// <summary>
 	/// Get all Principals
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroups</returns>
 	[Get("/principals")]
 	Task<OpenProjectItemSet<Principal>> GetAllAsync(
@@ -20,7 +20,7 @@ public interface IPrincipals
 	/// <summary>
 	/// Get Principal by ID
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>
 	[Get("/principals/{id}")]
 	Task<Principal> GetAsync(

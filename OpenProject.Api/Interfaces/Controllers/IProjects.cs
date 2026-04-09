@@ -13,7 +13,7 @@ public interface IProjects
 	/// <summary>
 	/// Create a Project
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>
 	[Post("/projects")]
 	Task<Project> CreateAsync(
@@ -23,7 +23,7 @@ public interface IProjects
 	/// <summary>
 	/// Get a project by ID
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>
 	[Get("/projects/{id}")]
 	Task<Project> GetAsync(
@@ -33,7 +33,7 @@ public interface IProjects
 	/// <summary>
 	/// Gets all projects
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>
 	[Get("/projects")]
 	Task<OpenProjectItemSet<Project>> GetAllAsync(
@@ -42,7 +42,7 @@ public interface IProjects
 	/// <summary>
 	/// Deletes a project by ID
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task</returns>
 	[Delete("/projects/{id}")]
 	Task<IApiResponse> DeleteAsync(
@@ -65,7 +65,7 @@ public interface IProjects
 	/// <summary>
 	/// Gets all project available assignees
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of ProjectModel</returns>
 	[Get("/projects/{id}/available_assignees")]
 	Task<OpenProjectItemSet<User>> GetAvailableAssigneesAsync(

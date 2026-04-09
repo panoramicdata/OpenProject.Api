@@ -3,12 +3,19 @@ using System.Text;
 
 namespace OpenProject.Api;
 
+/// <summary>
+/// HTTP client handler that adds OpenProject API key authentication (Basic auth) to all outgoing requests.
+/// </summary>
 public class AuthenticatedHttpClientHandler : HttpClientHandler
 {
 	private readonly OpenProjectClientOptions _options;
 
 	private readonly ILogger? _logger;
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="AuthenticatedHttpClientHandler"/> class.
+	/// </summary>
+	/// <param name="options">The client options containing the API key and other configuration.</param>
 	public AuthenticatedHttpClientHandler(
 		OpenProjectClientOptions options)
 	{
@@ -17,6 +24,12 @@ public class AuthenticatedHttpClientHandler : HttpClientHandler
 		_logger = options.Logger;
 	}
 
+	/// <summary>
+	/// Sends an HTTP request with Basic authentication credentials attached.
+	/// </summary>
+	/// <param name="request">The HTTP request message to send.</param>
+	/// <param name="cancellationToken">A cancellation token to cancel the operation.</param>
+	/// <returns>The HTTP response message.</returns>
 	protected override async Task<HttpResponseMessage> SendAsync(
 		HttpRequestMessage request,
 		CancellationToken cancellationToken)

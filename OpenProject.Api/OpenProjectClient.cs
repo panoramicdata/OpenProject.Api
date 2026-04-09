@@ -20,6 +20,10 @@ public class OpenProjectClient : IDisposable
 		_shouldDisposeHttpClient = true;
 	}
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="OpenProjectClient"/> class using a pre-configured <see cref="HttpClient"/>.
+	/// </summary>
+	/// <param name="client">The HTTP client to use for API requests.</param>
 	public OpenProjectClient(HttpClient client)
 	{
 		_httpClient = client;
@@ -78,6 +82,7 @@ public class OpenProjectClient : IDisposable
 	/// <inheritdoc />
 	public IHelpTexts HelpTexts { get; }
 
+	/// <inheritdoc />
 	public IMyPreferences MyPreferences { get; }
 
 	/// <inheritdoc />
@@ -98,8 +103,10 @@ public class OpenProjectClient : IDisposable
 	/// <inheritdoc />
 	public IRoles Roles { get; }
 
+	/// <inheritdoc />
 	public IRoot Root { get; }
 
+	/// <inheritdoc />
 	public IRelations Relations { get; }
 
 	/// <inheritdoc />
@@ -111,16 +118,16 @@ public class OpenProjectClient : IDisposable
 	/// <inheritdoc />
 	public IQueries Queries { get; }
 
-	/// <inheritdoc>/>
+	/// <inheritdoc />
 	public IUsers Users { get; }
 
-	/// <inheritdoc>/>
+	/// <inheritdoc />
 	public IGroups Groups { get; }
 
-	/// <inheritdoc>/>
+	/// <inheritdoc />
 	public IMemberships Memberships { get; }
 
-	/// <inheritdoc>/>
+	/// <inheritdoc />
 	public IVersions Versions { get; }
 
 	/// <inheritdoc />
@@ -135,6 +142,10 @@ public class OpenProjectClient : IDisposable
 	/// <inheritdoc />
 	public ITypes Types { get; }
 
+	/// <summary>
+	/// Releases the unmanaged resources used by the <see cref="OpenProjectClient"/> and optionally releases the managed resources.
+	/// </summary>
+	/// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
 	protected virtual void Dispose(bool disposing)
 	{
 		if (!_isDisposed)
@@ -151,6 +162,7 @@ public class OpenProjectClient : IDisposable
 		}
 	}
 
+	/// <inheritdoc />
 	public void Dispose()
 	{
 		// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method

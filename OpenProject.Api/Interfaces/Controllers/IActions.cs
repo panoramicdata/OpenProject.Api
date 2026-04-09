@@ -1,4 +1,4 @@
-﻿using Action = OpenProject.Api.Data.Models.Action;
+using Action = OpenProject.Api.Data.Models.Action;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
@@ -11,7 +11,7 @@ public interface IActions
 	/// <summary>
 	/// Get all Actions
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of Actions</returns>
 	[Get("/actions")]
 	public Task<OpenProjectItemSet<Action>> GetAllAsync(
@@ -20,7 +20,7 @@ public interface IActions
 	/// <summary>
 	/// Get Action by ID
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of Action</returns>
 	[Get("/actions/{id}")]
 	public Task<OpenProjectItemSet<Action>> GetAsync(

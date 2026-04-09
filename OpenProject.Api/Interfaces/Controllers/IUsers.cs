@@ -1,4 +1,4 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 using OpenProject.Api.Data.Models.Create;
 using OpenProject.Api.Data.Models.Update;
 
@@ -13,7 +13,7 @@ public interface IUsers
 	/// <summary>
 	/// Get all Users
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroups</returns>
 	[Get("/users")]
 	Task<OpenProjectItemSet<User>> GetAllAsync(
@@ -22,7 +22,7 @@ public interface IUsers
 	/// <summary>
 	/// Get User by ID
 	/// </summary>
-	/// <exception cref="Exceptions.ApiException">Thrown when fails to make API call</exception>
+	/// <exception cref="Refit.ApiException">Thrown when fails to make API call</exception>
 	/// <returns>Task of UserGroup</returns>
 	[Get("/users/{id}")]
 	Task<User> GetAsync(

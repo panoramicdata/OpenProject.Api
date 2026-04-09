@@ -2,6 +2,9 @@
 
 namespace OpenProject.Api.Data.Models.Update;
 
+/// <summary>
+/// Represents the fields that can be updated on an existing work package.
+/// </summary>
 public class WorkPackageUpdate
 {
 	/// <summary>

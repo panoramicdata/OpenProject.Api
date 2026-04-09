@@ -1,4 +1,8 @@
 ﻿namespace OpenProject.Api.Interfaces;
+
+/// <summary>
+/// Implemented by resources that track creation and modification timestamps.
+/// </summary>
 public interface IHasTimestamps
 {
 	/// <summary>

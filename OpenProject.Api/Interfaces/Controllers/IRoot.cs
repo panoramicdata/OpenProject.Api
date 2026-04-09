@@ -1,4 +1,4 @@
-﻿namespace OpenProject.Api.Interfaces.Controllers;
+namespace OpenProject.Api.Interfaces.Controllers;
 
 /// <summary>
 /// The root resource contains links to available resources in the API. By following these links a client should be able to discover further resources in the API.

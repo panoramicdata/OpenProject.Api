@@ -1,4 +1,8 @@
 ﻿namespace OpenProject.Api.Interfaces;
+
+/// <summary>
+/// Implemented by resources that have a name.
+/// </summary>
 public interface INamed
 {
 	/// <summary>

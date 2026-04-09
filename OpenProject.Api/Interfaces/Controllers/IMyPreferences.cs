@@ -1,7 +1,10 @@
-﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models;
 
 namespace OpenProject.Api.Interfaces.Controllers;
 
+/// <summary>
+/// Controller interface for accessing the current user's preferences.
+/// </summary>
 public interface IMyPreferences
 {
 	/// <summary>
