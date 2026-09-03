@@ -5,25 +5,8 @@ public class ViewTests(
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Views
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch each
-		foreach (var item in items.Embedded.Elements)
-		{
-			var refetchedItem = await OpenProjectClient
-				.Views
-				.GetAsync(item.Id, CancellationToken);
-			refetchedItem.Should().NotBeNull();
-		}
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Views.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Views.GetAsync(element.Id, cancellationToken));
 }

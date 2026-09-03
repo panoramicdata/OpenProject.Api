@@ -5,36 +5,12 @@ public class MembershipTests(
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		var items = await OpenProjectClient
-			.Memberships
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.Memberships.GetAllAsync);
 
 	[Fact]
-	public async Task GetAsync_Succeeds()
-	{
-		var items = await OpenProjectClient
-			.Memberships
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		foreach (var item in items.Embedded.Elements)
-		{
-			// Get
-			var itemRefetch = await OpenProjectClient
-				.Memberships
-				.GetAsync(item.Id, CancellationToken);
-
-			itemRefetch.Should().NotBeNull();
-		}
-	}
+	public Task GetAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Memberships.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Memberships.GetAsync(element.Id, cancellationToken));
 }

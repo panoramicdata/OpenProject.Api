@@ -19,11 +19,8 @@ public class Fixture : TestBedFixture
 		services
 			.AddLogging(builder => builder.SetMinimumLevel(LogLevel.Debug))
 			.AddScoped<CancellationTokenSource>()
-			.Configure<AppSettings>(_configuration.GetSection("AppSettings")); ;
+			.Configure<AppSettings>(_configuration.GetSection("AppSettings"));
 	}
-
-	protected override ValueTask DisposeAsyncCore()
-		=> default;
 
 	protected override IEnumerable<TestAppSettings> GetTestAppSettings()
 	{

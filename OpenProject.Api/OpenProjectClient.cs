@@ -32,34 +32,34 @@ public class OpenProjectClient : IDisposable
 			//UrlParameterFormatter = new OpenProjectUrlParameterFormatter(),
 		};
 
-		Actions = RefitFor(Actions!);
-		Categories = RefitFor(Categories!);
-		Configuration = RefitFor(Configuration!);
-		Documents = RefitFor(Documents!);
-		Grids = RefitFor(Grids!);
-		HelpTexts = RefitFor(HelpTexts!);
-		News = RefitFor(News!);
-		MyPreferences = RefitFor(MyPreferences!);
-		Notifications = RefitFor(Notifications!);
-		Principals = RefitFor(Principals!);
-		Projects = RefitFor(Projects!);
-		Roles = RefitFor(Roles!);
-		Root = RefitFor(Root!);
-		Relations = RefitFor(Relations!);
-		Statuses = RefitFor(Statuses!);
-		TimeEntries = RefitFor(TimeEntries!);
-		Queries = RefitFor(Queries!);
-		Users = RefitFor(Users!);
-		Groups = RefitFor(Groups!);
-		Memberships = RefitFor(Memberships!);
-		Versions = RefitFor(Versions!);
-		Views = RefitFor(Views!);
-		WorkPackages = RefitFor(WorkPackages!);
-		WorkSchedules = RefitFor(WorkSchedules!);
-		Types = RefitFor(Types!);
+		Actions = RefitFor<IActions>();
+		Categories = RefitFor<ICategories>();
+		Configuration = RefitFor<IConfiguration>();
+		Documents = RefitFor<IDocuments>();
+		Grids = RefitFor<IGrids>();
+		HelpTexts = RefitFor<IHelpTexts>();
+		News = RefitFor<INews>();
+		MyPreferences = RefitFor<IMyPreferences>();
+		Notifications = RefitFor<INotifications>();
+		Principals = RefitFor<IPrincipals>();
+		Projects = RefitFor<IProjects>();
+		Roles = RefitFor<IRoles>();
+		Root = RefitFor<IRoot>();
+		Relations = RefitFor<IRelations>();
+		Statuses = RefitFor<IStatuses>();
+		TimeEntries = RefitFor<ITimeEntries>();
+		Queries = RefitFor<IQueries>();
+		Users = RefitFor<IUsers>();
+		Groups = RefitFor<IGroups>();
+		Memberships = RefitFor<IMemberships>();
+		Versions = RefitFor<IVersions>();
+		Views = RefitFor<IViews>();
+		WorkPackages = RefitFor<IWorkPackages>();
+		WorkSchedules = RefitFor<IWorkSchedules>();
+		Types = RefitFor<ITypes>();
 	}
 
-	private T RefitFor<T>(T _)
+	private T RefitFor<T>()
 		=> RestService.For<T>(_httpClient, _refitSettings);
 
 	private readonly HttpClient _httpClient;

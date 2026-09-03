@@ -5,25 +5,8 @@ public class StatusTests(
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Statuses
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch each
-		foreach (var item in items.Embedded.Elements)
-		{
-			var refetchedItem = await OpenProjectClient
-				.Statuses
-				.GetAsync(item.Id, CancellationToken);
-			refetchedItem.Should().NotBeNull();
-		}
-	}
+	public Task GetAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Statuses.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Statuses.GetAsync(element.Id, cancellationToken));
 }

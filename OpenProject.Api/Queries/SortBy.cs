@@ -18,7 +18,7 @@ public class SortBy(List<FieldAndDirection> sort)
 		sortString.Append('[');
 		foreach (var sortItem in sort)
 		{
-			var sortItemString = $"""["{sortItem.Field}","{sortItem.Direction switch { Direction.Ascending => "asc", _ => "desc" }}"]""";
+			var sortItemString = $"""["{sortItem.Field}","{(sortItem.Direction == Direction.Ascending ? "asc" : "desc")}"]""";
 			sortString.Append(sortItemString);
 			if (++index < sort.Count)
 			{

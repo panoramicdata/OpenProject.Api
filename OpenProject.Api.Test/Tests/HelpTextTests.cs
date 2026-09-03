@@ -1,29 +1,12 @@
 ﻿namespace OpenProject.Api.Test.Tests;
 
 public class HelpTextTests(
-ITestOutputHelper testOutputHelper,
-Fixture fixture) : TestBase(testOutputHelper, fixture)
+	ITestOutputHelper testOutputHelper,
+	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.HelpTexts
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch each
-		foreach (var item in items.Embedded.Elements)
-		{
-			var refetchedItem = await OpenProjectClient
-				.HelpTexts
-				.GetAsync(item.Id, CancellationToken);
-			refetchedItem.Should().NotBeNull();
-		}
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.HelpTexts.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.HelpTexts.GetAsync(element.Id, cancellationToken));
 }

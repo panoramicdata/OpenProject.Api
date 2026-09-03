@@ -5,37 +5,12 @@ public class VersionTests(
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Versions
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch each
-		foreach (var item in items.Embedded.Elements)
-		{
-			var refetchedItem = await OpenProjectClient
-				.Versions
-				.GetAsync(item.Id, CancellationToken);
-			refetchedItem.Should().NotBeNull();
-		}
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Versions.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Versions.GetAsync(element.Id, cancellationToken));
 
 	[Fact]
-	public async Task GetAvailableProjectsAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Versions
-			.GetAvailableProjectsAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	public Task GetAvailableProjectsAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.Versions.GetAvailableProjectsAsync);
 }

@@ -34,4 +34,51 @@ public class TestBase : TestBed<Fixture>
 			Logger = Log,
 		});
 	}
+
+	/// <summary>
+	/// Fetches a collection and asserts that the response and its embedded payload are present.
+	/// </summary>
+	protected static async Task<Embedded<TElement>> AssertGetAllAsync<TElement>(
+		Func<CancellationToken, Task<OpenProjectItemSet<TElement>>> getAllAsync)
+		where TElement : ItemBase
+	{
+		var items = await getAllAsync(CancellationToken);
+
+		items.Should().NotBeNull();
+		items.Embedded.Should().NotBeNull();
+
+		return items.Embedded;
+	}
+
+	/// <summary>
+	/// Fetches a collection and asserts that the response, its embedded payload and its
+	/// elements are all present, returning the elements.
+	/// </summary>
+	protected static async Task<IReadOnlyCollection<TElement>> AssertGetAllElementsAsync<TElement>(
+		Func<CancellationToken, Task<OpenProjectItemSet<TElement>>> getAllAsync)
+		where TElement : ItemBase
+	{
+		var embedded = await AssertGetAllAsync(getAllAsync);
+
+		embedded.Elements.Should().NotBeNull();
+
+		return embedded.Elements;
+	}
+
+	/// <summary>
+	/// Fetches a collection, then re-fetches every element by its identifier and asserts that
+	/// each response is present. This is the "list, then get each" shape shared by most endpoints.
+	/// </summary>
+	protected static async Task AssertGetAllThenGetEachAsync<TElement, TResult>(
+		Func<CancellationToken, Task<OpenProjectItemSet<TElement>>> getAllAsync,
+		Func<TElement, CancellationToken, Task<TResult>> getAsync)
+		where TElement : ItemBase
+	{
+		foreach (var element in await AssertGetAllElementsAsync(getAllAsync))
+		{
+			var refetched = await getAsync(element, CancellationToken);
+
+			refetched.Should().NotBeNull();
+		}
+	}
 }
