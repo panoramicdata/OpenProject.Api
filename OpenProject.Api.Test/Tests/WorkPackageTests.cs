@@ -1,6 +1,7 @@
 ﻿using OpenProject.Api.Data.CustomLinks;
 using OpenProject.Api.Data.Models.Create;
 using OpenProject.Api.Enums;
+using Refit;
 
 namespace OpenProject.Api.Test.Tests;
 
@@ -9,83 +10,38 @@ public class WorkPackageTests(
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.WorkPackages
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch each
-		foreach (var item in items.Embedded.Elements)
-		{
-			var refetchedItem = await OpenProjectClient
-				.WorkPackages
-				.GetAsync(item.Id, CancellationToken);
-			refetchedItem.Should().NotBeNull();
-		}
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.WorkPackages.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.WorkPackages.GetAsync(element.Id, cancellationToken));
 
 	[Fact]
-	public async Task CreateAsync_Succeeds()
-	{
-		var dataToSend = new WorkPackageCreate
+	public Task CreateAsync_Succeeds()
+		=> CreateThenDeleteAsync(new()
 		{
-			Links = new WorkPackageCreateLinks
-			{
-				Project = new HrefItem { Href = "/api/v3/projects/1" },
-				Type = new HrefItem { Href = "/api/v3/types/1" },
-			},
-			Subject = "Test Work Package",
-			Description = new()
-			{
-				Format = Format.Markdown,
-				Raw = "This is a test work package",
-				Html = string.Empty,
-			},
-		};
-
-		var item = await OpenProjectClient
-			.WorkPackages
-			.CreateAsync(dataToSend, CancellationToken);
-
-		item.Should().NotBeNull();
-		item.ItemType.Should().Be("WorkPackage");
-
-		// Delete
-		await OpenProjectClient
-			.WorkPackages
-			.DeleteAsync(item.Id, CancellationToken);
-	}
+			Format = Format.Markdown,
+			Raw = "This is a test work package",
+			Html = string.Empty,
+		});
 
 	[Fact]
-	public async Task DeleteAsync_Succeeds()
-	{
-		// Create
-		var dataToSend = new WorkPackageCreate
-		{
-			Links = new WorkPackageCreateLinks
-			{
-				Project = new HrefItem { Href = "/api/v3/projects/1" },
-				Type = new HrefItem { Href = "/api/v3/types/1" }
-			},
-			Subject = "Test Work Package"
-		};
-		var item = await OpenProjectClient
-			.WorkPackages
-			.CreateAsync(dataToSend, CancellationToken);
+	public Task DeleteAsync_Succeeds()
+		=> CreateThenDeleteAsync(description: null);
 
-		item.Should().NotBeNull();
-		item.ItemType.Should().Be("WorkPackage");
-
-		// Delete
-		await OpenProjectClient
-			.WorkPackages
-			.DeleteAsync(item.Id, CancellationToken);
-	}
+	private Task<IApiResponse> CreateThenDeleteAsync(Formattable? description)
+		=> AssertCreateThenDeleteAsync(
+			cancellationToken => OpenProjectClient.WorkPackages.CreateAsync(
+				new WorkPackageCreate
+				{
+					Links = new WorkPackageCreateLinks
+					{
+						Project = new HrefItem { Href = "/api/v3/projects/1" },
+						Type = new HrefItem { Href = "/api/v3/types/1" },
+					},
+					Subject = "Test Work Package",
+					Description = description,
+				},
+				cancellationToken),
+			(created, cancellationToken) => OpenProjectClient.WorkPackages.DeleteAsync(created.Id, cancellationToken),
+			created => created.ItemType.Should().Be("WorkPackage"));
 }

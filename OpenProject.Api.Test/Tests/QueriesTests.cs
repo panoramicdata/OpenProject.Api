@@ -1,85 +1,42 @@
 ﻿using OpenProject.Api.Data.Models.Create;
+using Refit;
 
 namespace OpenProject.Api.Test.Tests;
+
 public class QueriesTests(
 	ITestOutputHelper testOutputHelper,
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
-	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Queries
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	private const string TestQueryName = "Test Query";
 
 	[Fact]
-	public async Task GetAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Queries
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch each
-		foreach (var item in items.Embedded.Elements)
-		{
-			var refetchedItem = await OpenProjectClient
-				.Queries
-				.GetAsync(item.Id, CancellationToken);
-			refetchedItem.Should().NotBeNull();
-		}
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.Queries.GetAllAsync);
 
 	[Fact]
-	public async Task CreateAsync_Succeeds()
-	{
-		var query = new QueryCreate
-		{
-			Name = "Test Query"
-		};
+	public Task GetAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Queries.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Queries.GetAsync(element.Id, cancellationToken));
 
-		// Create
-		var createResponse = await OpenProjectClient
-			.Queries.CreateAsync(query, CancellationToken);
-
-		createResponse.Should().NotBeNull();
-		createResponse.Name.Should().Be(query.Name);
-
-		// Delete
-		await OpenProjectClient
-			.Queries.DeleteAsync(createResponse.Id, CancellationToken);
-	}
+	[Fact]
+	public Task CreateAsync_Succeeds()
+		=> CreateThenDeleteAsync();
 
 	[Fact]
 	public async Task DeleteAsync_Succeeds()
 	{
-		var query = new QueryCreate
-		{
-			Name = "Test Query"
-		};
-
-		// Create
-		var createResponse = await OpenProjectClient
-			.Queries.CreateAsync(query, CancellationToken);
-
-		createResponse.Should().NotBeNull();
-		createResponse.Name.Should().Be(query.Name);
-
-		// Delete
-		var deleteResponse = await OpenProjectClient
-			.Queries.DeleteAsync(createResponse.Id, CancellationToken);
+		var deleteResponse = await CreateThenDeleteAsync();
 
 		deleteResponse.Should().NotBeNull();
 		deleteResponse.IsSuccessStatusCode.Should().BeTrue();
 	}
+
+	private Task<IApiResponse> CreateThenDeleteAsync()
+		=> AssertCreateThenDeleteAsync(
+			cancellationToken => OpenProjectClient.Queries.CreateAsync(
+				new QueryCreate { Name = TestQueryName },
+				cancellationToken),
+			(created, cancellationToken) => OpenProjectClient.Queries.DeleteAsync(created.Id, cancellationToken),
+			created => created.Name.Should().Be(TestQueryName));
 }

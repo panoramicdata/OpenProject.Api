@@ -5,109 +5,37 @@ public class WorkScheduleTests(
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAllDaysAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.WorkSchedules
-			.GetAllDays(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	public Task GetAllDaysAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.WorkSchedules.GetAllDays);
 
 	[Fact]
-	public async Task GetDayAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.WorkSchedules
-			.GetAllDays(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch
-		foreach (var item in items.Embedded.Elements)
-		{
-			var date = $"{item.Date:yyyy-MM-dd}";
-			var day = await OpenProjectClient
-				.WorkSchedules
-				.GetDay(date, CancellationToken);
-
-			day.Should().NotBeNull();
-		}
-	}
+	public Task GetDayAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.WorkSchedules.GetAllDays,
+			(element, cancellationToken) => OpenProjectClient.WorkSchedules.GetDay(
+				$"{element.Date:yyyy-MM-dd}",
+				cancellationToken));
 
 	[Fact]
-	public async Task GetAllNonWorkingDaysAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.WorkSchedules
-			.GetAllNonWorkingDays(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	public Task GetAllNonWorkingDaysAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.WorkSchedules.GetAllNonWorkingDays);
 
 	[Fact]
-	public async Task GetNonWorkingDayAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.WorkSchedules
-			.GetAllNonWorkingDays(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch
-		foreach (var item in items.Embedded.Elements)
-		{
-			var date = $"{item.Date:yyyy-MM-dd}";
-
-			var day = await OpenProjectClient
-				.WorkSchedules
-				.GetDay(date, CancellationToken);
-			day.Should().NotBeNull();
-		}
-	}
+	public Task GetNonWorkingDayAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.WorkSchedules.GetAllNonWorkingDays,
+			// Deliberately GetDay, not GetNonWorkingDay: this preserves what the test asserted before.
+			(element, cancellationToken) => OpenProjectClient.WorkSchedules.GetDay(
+				$"{element.Date:yyyy-MM-dd}",
+				cancellationToken));
 
 	[Fact]
-	public async Task GetAllWorkingDaysAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.WorkSchedules
-			.GetAllWeekDays(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	public Task GetAllWorkingDaysAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.WorkSchedules.GetAllWeekDays);
 
 	[Fact]
-	public async Task GetWorkingDayAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.WorkSchedules
-			.GetAllWeekDays(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch
-		foreach (var item in items.Embedded.Elements)
-		{
-			var day = await OpenProjectClient
-				.WorkSchedules
-				.GetWeekDay(item.Day, CancellationToken);
-			day.Should().NotBeNull();
-		}
-	}
+	public Task GetWorkingDayAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.WorkSchedules.GetAllWeekDays,
+			(element, cancellationToken) => OpenProjectClient.WorkSchedules.GetWeekDay(element.Day, cancellationToken));
 }

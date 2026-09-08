@@ -1,104 +1,53 @@
 ﻿using OpenProject.Api.Data.Models.Create;
+using Refit;
 
 namespace OpenProject.Api.Test.Tests;
+
 public class NewsTests(
 	ITestOutputHelper testOutputHelper,
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
-	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.News
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	private const string TestNewsTitle = "Test News";
 
 	[Fact]
-	public async Task GetAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.News
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch each
-		foreach (var item in items.Embedded.Elements)
-		{
-			var refetchedItem = await OpenProjectClient
-				.News
-				.GetAsync(item.Id, CancellationToken);
-			refetchedItem.Should().NotBeNull();
-		}
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.News.GetAllAsync);
 
 	[Fact]
-	public async Task CreateAsync_Succeeds()
-	{
-		var newNews = new NewsCreate
-		{
-			Title = "Test News",
+	public Task GetAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.News.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.News.GetAsync(element.Id, cancellationToken));
 
-			Links = new()
-			{
-				Project = new()
-				{
-					Href = "/api/v3/projects/1"
-				}
-			}
-		};
-
-		// Create
-		var item = await OpenProjectClient
-			.News
-			.CreateAsync(newNews, CancellationToken);
-
-		item.Should().NotBeNull();
-		item.Title.Should().Be(newNews.Title);
-
-		// Delete
-		await OpenProjectClient
-			.News
-			.DeleteAsync(item.Id, CancellationToken);
-	}
+	[Fact]
+	public Task CreateAsync_Succeeds()
+		=> CreateThenDeleteAsync();
 
 	[Fact]
 	public async Task DeleteAsync_Succeeds()
 	{
-		var newNews = new NewsCreate
-		{
-			Title = "Test News",
+		var deleteResponse = await CreateThenDeleteAsync();
 
-			Links = new()
-			{
-				Project = new()
-				{
-					Href = "/api/v3/projects/1"
-				}
-			}
-		};
-
-		// Create
-		var item = await OpenProjectClient
-			.News
-			.CreateAsync(newNews, CancellationToken);
-		item.Should().NotBeNull();
-		item.Title.Should().Be(newNews.Title);
-
-		// Delete
-		var response = await OpenProjectClient
-			.News
-			.DeleteAsync(item.Id, CancellationToken);
-
-		response.Should().NotBeNull();
-		response.IsSuccessStatusCode.Should().BeTrue();
+		deleteResponse.Should().NotBeNull();
+		deleteResponse.IsSuccessStatusCode.Should().BeTrue();
 	}
+
+	private Task<IApiResponse> CreateThenDeleteAsync()
+		=> AssertCreateThenDeleteAsync(
+			cancellationToken => OpenProjectClient.News.CreateAsync(
+				new NewsCreate
+				{
+					Title = TestNewsTitle,
+
+					Links = new()
+					{
+						Project = new()
+						{
+							Href = "/api/v3/projects/1"
+						}
+					}
+				},
+				cancellationToken),
+			(created, cancellationToken) => OpenProjectClient.News.DeleteAsync(created.Id, cancellationToken),
+			created => created.Title.Should().Be(TestNewsTitle));
 }

@@ -1,5 +1,6 @@
 ﻿using OpenProject.Api.Data.Models.Create;
 using OpenProject.Api.Data.Models.Update;
+using Refit;
 
 namespace OpenProject.Api.Test.Tests;
 
@@ -8,96 +9,34 @@ public class ProjectTests(
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		var items = await OpenProjectClient
-			.Projects
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.Projects.GetAllAsync);
 
 	[Fact]
-	public async Task GetAsync_Succeeds()
-	{
-		var items = await OpenProjectClient
-			.Projects
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		foreach (var project in items.Embedded.Elements)
-		{
-			// Get
-			var projectRefetch = await OpenProjectClient
-				.Projects
-				.GetAsync(project.Id, CancellationToken);
-
-			projectRefetch.Should().NotBeNull();
-		}
-	}
+	public Task GetAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Projects.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Projects.GetAsync(element.Id, cancellationToken));
 
 	[Fact]
-	public async Task CreateAsync_Succeeds()
-	{
-		var project = new ProjectCreate
-		{
-			Name = "Test Project",
-			Identifier = "test-project",
-		};
-
-		// Create
-		var createdProject = await OpenProjectClient
-			.Projects
-			.CreateAsync(project, CancellationToken);
-		createdProject.Should().NotBeNull();
-
-		// Delete
-		await OpenProjectClient
-			.Projects
-			.DeleteAsync(createdProject.Id, CancellationToken);
-	}
+	public Task CreateAsync_Succeeds()
+		=> CreateThenDeleteAsync();
 
 	[Fact]
 	public async Task DeleteAsync_Succeeds()
 	{
-		var project = new ProjectCreate
-		{
-			Name = "Test Project",
-			Identifier = "test-project",
-		};
+		var deleteResponse = await CreateThenDeleteAsync();
 
-		// Create
-		var createdProject = await OpenProjectClient
-			.Projects
-			.CreateAsync(project, CancellationToken);
-		createdProject.Should().NotBeNull();
-
-		// Delete
-		var response = await OpenProjectClient
-			.Projects
-			.DeleteAsync(createdProject.Id, CancellationToken);
-
-		response.IsSuccessStatusCode.Should().BeTrue();
+		deleteResponse.IsSuccessStatusCode.Should().BeTrue();
 	}
 
 	[Fact]
 	public async Task UpdateAsync_Succeeds()
 	{
-		var project = new ProjectCreate
-		{
-			Name = "Test Project",
-			Identifier = "test-project",
-		};
-
 		// Create
 		var createdProject = await OpenProjectClient
 			.Projects
-			.CreateAsync(project, CancellationToken);
+			.CreateAsync(NewProject(), CancellationToken);
 
 		createdProject.Should().NotBeNull();
 
@@ -122,59 +61,34 @@ public class ProjectTests(
 	}
 
 	[Fact]
-	public async Task GetAvailableAssigneesAsync_Succeeds()
-	{
-		var items = await OpenProjectClient
-			.Projects
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		foreach (var item in items.Embedded.Elements)
-		{
-			// Get
-			var availableAssignees = await OpenProjectClient
-				.Projects
-				.GetAvailableAssigneesAsync(item.Id, CancellationToken);
-
-			availableAssignees.Should().NotBeNull();
-		}
-	}
+	public Task GetAvailableAssigneesAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Projects.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Projects.GetAvailableAssigneesAsync(
+				element.Id,
+				cancellationToken));
 
 	[Fact]
-	public async Task GetAvailableParentProjectsAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Projects
-			.GetAvailableParentProjectsAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	public Task GetAvailableParentProjectsAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.Projects.GetAvailableParentProjectsAsync);
 
 	[Fact]
-	public async Task GetWorkPackagesAsync_Succeeds()
-	{
-		var items = await OpenProjectClient
-			.Projects
-			.GetAllAsync(CancellationToken);
+	public Task GetWorkPackagesAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Projects.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Projects.GetWorkPackagesAsync(
+				element.Id,
+				cancellationToken));
 
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-		items.Embedded.Elements.Should().NotBeNull();
-
-		foreach (var item in items.Embedded.Elements)
+	private static ProjectCreate NewProject()
+		=> new()
 		{
-			// Get
-			var workPackages = await OpenProjectClient
-				.Projects
-				.GetWorkPackagesAsync(item.Id, CancellationToken);
+			Name = "Test Project",
+			Identifier = "test-project",
+		};
 
-			workPackages.Should().NotBeNull();
-		}
-	}
+	private Task<IApiResponse> CreateThenDeleteAsync()
+		=> AssertCreateThenDeleteAsync(
+			cancellationToken => OpenProjectClient.Projects.CreateAsync(NewProject(), cancellationToken),
+			(created, cancellationToken) => OpenProjectClient.Projects.DeleteAsync(created.Id, cancellationToken));
 }

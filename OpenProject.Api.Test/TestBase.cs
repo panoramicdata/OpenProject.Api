@@ -81,4 +81,23 @@ public class TestBase : TestBed<Fixture>
 			refetched.Should().NotBeNull();
 		}
 	}
+
+	/// <summary>
+	/// Creates a resource, asserts that the create response is present and satisfies
+	/// <paramref name="assertCreated"/>, then deletes it and returns the delete response so the
+	/// caller can assert on it. This is the "create, then delete" shape shared by the endpoints
+	/// that support both, and it leaves nothing behind when the assertions pass.
+	/// </summary>
+	protected static async Task<TDeleteResponse> AssertCreateThenDeleteAsync<TCreated, TDeleteResponse>(
+		Func<CancellationToken, Task<TCreated>> createAsync,
+		Func<TCreated, CancellationToken, Task<TDeleteResponse>> deleteAsync,
+		Action<TCreated>? assertCreated = null)
+	{
+		var created = await createAsync(CancellationToken);
+
+		created.Should().NotBeNull();
+		assertCreated?.Invoke(created);
+
+		return await deleteAsync(created, CancellationToken);
+	}
 }

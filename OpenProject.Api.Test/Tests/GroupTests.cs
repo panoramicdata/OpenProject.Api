@@ -1,4 +1,5 @@
 ﻿using OpenProject.Api.Data.Models.Create;
+using Refit;
 
 namespace OpenProject.Api.Test.Tests;
 
@@ -7,84 +8,34 @@ public class GroupTests(
 	Fixture fixture) : TestBase(testOutputHelper, fixture)
 {
 	[Fact]
-	public async Task GetAllAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Groups
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-	}
+	public Task GetAllAsync_Succeeds()
+		=> AssertGetAllAsync(OpenProjectClient.Groups.GetAllAsync);
 
 	[Fact]
-	public async Task GetAsync_Succeeds()
-	{
-		// Get
-		var items = await OpenProjectClient
-			.Groups
-			.GetAllAsync(CancellationToken);
-
-		items.Should().NotBeNull();
-		items.Embedded.Should().NotBeNull();
-
-		items.Embedded.Elements.Should().NotBeNull();
-
-		// Re-fetch each
-		foreach (var item in items.Embedded.Elements)
-		{
-			var refetchedItem = await OpenProjectClient
-				.Groups
-				.GetAsync(item.Id, CancellationToken);
-			refetchedItem.Should().NotBeNull();
-		}
-	}
+	public Task GetAsync_Succeeds()
+		=> AssertGetAllThenGetEachAsync(
+			OpenProjectClient.Groups.GetAllAsync,
+			(element, cancellationToken) => OpenProjectClient.Groups.GetAsync(element.Id, cancellationToken));
 
 	[Fact]
-	public async Task CreateAsync_Succeeds()
-	{
-		// Get
-		var newGroup = new GroupCreate
-		{
-			Name = "Test Group - 1"
-		};
-
-		var response = await OpenProjectClient
-			.Groups
-			.CreateAsync(newGroup, CancellationToken);
-
-		response.Should().NotBeNull();
-		response.Name.Should().Be(newGroup.Name);
-
-		// Delete
-		await OpenProjectClient
-			.Groups
-			.DeleteAsync(response.Id, CancellationToken);
-	}
+	public Task CreateAsync_Succeeds()
+		=> CreateThenDeleteAsync("Test Group - 1");
 
 	[Fact]
 	public async Task DeleteAsync_Succeeds()
 	{
-		// Get
-		var newGroup = new GroupCreate
-		{
-			Name = "Test Group - 2"
-		};
-
-		var response = await OpenProjectClient
-			.Groups
-			.CreateAsync(newGroup, CancellationToken);
-
-		response.Should().NotBeNull();
-		response.Name.Should().Be(newGroup.Name);
-
-		// Delete
-		var deleteResponse = await OpenProjectClient
-			.Groups
-			.DeleteAsync(response.Id, CancellationToken);
+		var deleteResponse = await CreateThenDeleteAsync("Test Group - 2");
 
 		deleteResponse.Should().NotBeNull();
 		deleteResponse.IsSuccessStatusCode.Should().BeTrue();
 	}
+
+	// The two tests use distinct names so that a leftover group from one cannot collide with the other.
+	private Task<IApiResponse> CreateThenDeleteAsync(string name)
+		=> AssertCreateThenDeleteAsync(
+			cancellationToken => OpenProjectClient.Groups.CreateAsync(
+				new GroupCreate { Name = name },
+				cancellationToken),
+			(created, cancellationToken) => OpenProjectClient.Groups.DeleteAsync(created.Id, cancellationToken),
+			created => created.Name.Should().Be(name));
 }
