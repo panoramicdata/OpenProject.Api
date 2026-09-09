@@ -240,3 +240,11 @@ dotnet_naming_style.constant_field_style.capitalization = pascal_case
 #dotnet_naming_style.constant_field_style.required_prefix = _ NOPE.
 
 # TODO: Fields that are public static readonly must be PascalCase
+
+# YAML files
+# YAML forbids tabs for indentation, and only [*.cs] above sets indent_style, so nothing
+# previously stopped an editor inserting tabs here. Tabs in codeql.yml made the workflow
+# unparseable, and GitHub reported that as a 0-second failed run with no jobs.
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
