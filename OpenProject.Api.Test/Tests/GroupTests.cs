@@ -23,12 +23,7 @@ public class GroupTests(
 
 	[Fact]
 	public async Task DeleteAsync_Succeeds()
-	{
-		var deleteResponse = await CreateThenDeleteAsync("Test Group - 2");
-
-		deleteResponse.Should().NotBeNull();
-		deleteResponse.IsSuccessStatusCode.Should().BeTrue();
-	}
+		=> AssertDeleteSucceeded(await CreateThenDeleteAsync("Test Group - 2"));
 
 	// The two tests use distinct names so that a leftover group from one cannot collide with the other.
 	private Task<IApiResponse> CreateThenDeleteAsync(string name)

@@ -1,3 +1,4 @@
+using Refit;
 using Xunit.Microsoft.DependencyInjection.Abstracts;
 
 namespace OpenProject.Api.Test;
@@ -83,15 +84,40 @@ public class TestBase : TestBed<Fixture>
 	}
 
 	/// <summary>
+	/// Creates a resource, asserts that the create response is present, then deletes it and
+	/// returns the delete response so the caller can assert on it. This is the "create, then
+	/// delete" shape shared by the endpoints that support both, and it leaves nothing behind
+	/// when the assertions pass.
+	/// </summary>
+	protected static Task<TDeleteResponse> AssertCreateThenDeleteAsync<TCreated, TDeleteResponse>(
+		Func<CancellationToken, Task<TCreated>> createAsync,
+		Func<TCreated, CancellationToken, Task<TDeleteResponse>> deleteAsync)
+		=> CreateThenDeleteCoreAsync(createAsync, deleteAsync, null);
+
+	/// <summary>
 	/// Creates a resource, asserts that the create response is present and satisfies
 	/// <paramref name="assertCreated"/>, then deletes it and returns the delete response so the
-	/// caller can assert on it. This is the "create, then delete" shape shared by the endpoints
-	/// that support both, and it leaves nothing behind when the assertions pass.
+	/// caller can assert on it.
 	/// </summary>
-	protected static async Task<TDeleteResponse> AssertCreateThenDeleteAsync<TCreated, TDeleteResponse>(
+	protected static Task<TDeleteResponse> AssertCreateThenDeleteAsync<TCreated, TDeleteResponse>(
 		Func<CancellationToken, Task<TCreated>> createAsync,
 		Func<TCreated, CancellationToken, Task<TDeleteResponse>> deleteAsync,
-		Action<TCreated>? assertCreated = null)
+		Action<TCreated> assertCreated)
+		=> CreateThenDeleteCoreAsync(createAsync, deleteAsync, assertCreated);
+
+	/// <summary>
+	/// Asserts that a delete response is present and reported success.
+	/// </summary>
+	protected static void AssertDeleteSucceeded(IApiResponse deleteResponse)
+	{
+		deleteResponse.Should().NotBeNull();
+		deleteResponse.IsSuccessStatusCode.Should().BeTrue();
+	}
+
+	private static async Task<TDeleteResponse> CreateThenDeleteCoreAsync<TCreated, TDeleteResponse>(
+		Func<CancellationToken, Task<TCreated>> createAsync,
+		Func<TCreated, CancellationToken, Task<TDeleteResponse>> deleteAsync,
+		Action<TCreated>? assertCreated)
 	{
 		var created = await createAsync(CancellationToken);
 

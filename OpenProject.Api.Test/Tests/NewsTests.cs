@@ -25,12 +25,7 @@ public class NewsTests(
 
 	[Fact]
 	public async Task DeleteAsync_Succeeds()
-	{
-		var deleteResponse = await CreateThenDeleteAsync();
-
-		deleteResponse.Should().NotBeNull();
-		deleteResponse.IsSuccessStatusCode.Should().BeTrue();
-	}
+		=> AssertDeleteSucceeded(await CreateThenDeleteAsync());
 
 	private Task<IApiResponse> CreateThenDeleteAsync()
 		=> AssertCreateThenDeleteAsync(
