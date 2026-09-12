@@ -1,33 +1,22 @@
-﻿using OpenProject.Api.Data.Models.Create;
+﻿using OpenProject.Api.Data.Models;
+using OpenProject.Api.Data.Models.Create;
 using Refit;
 
 namespace OpenProject.Api.Test.Tests;
 
 public class NewsTests(
 	ITestOutputHelper testOutputHelper,
-	Fixture fixture) : TestBase(testOutputHelper, fixture)
+	Fixture fixture) : CrudTestBase<News, OpenProjectItemSet<News>>(testOutputHelper, fixture)
 {
 	private const string TestNewsTitle = "Test News";
 
-	[Fact]
-	public Task GetAllAsync_Succeeds()
-		=> AssertGetAllAsync(OpenProjectClient.News.GetAllAsync);
+	protected override Task<OpenProjectItemSet<News>> GetAllAsync(CancellationToken cancellationToken)
+		=> OpenProjectClient.News.GetAllAsync(cancellationToken);
 
-	[Fact]
-	public Task GetAsync_Succeeds()
-		=> AssertGetAllThenGetEachAsync(
-			OpenProjectClient.News.GetAllAsync,
-			(element, cancellationToken) => OpenProjectClient.News.GetAsync(element.Id, cancellationToken));
+	protected override Task<OpenProjectItemSet<News>> GetAsync(News element, CancellationToken cancellationToken)
+		=> OpenProjectClient.News.GetAsync(element.Id, cancellationToken);
 
-	[Fact]
-	public Task CreateAsync_Succeeds()
-		=> CreateThenDeleteAsync();
-
-	[Fact]
-	public async Task DeleteAsync_Succeeds()
-		=> AssertDeleteSucceeded(await CreateThenDeleteAsync());
-
-	private Task<IApiResponse> CreateThenDeleteAsync()
+	protected override Task<IApiResponse> CreateThenDeleteAsync()
 		=> AssertCreateThenDeleteAsync(
 			cancellationToken => OpenProjectClient.News.CreateAsync(
 				new NewsCreate
