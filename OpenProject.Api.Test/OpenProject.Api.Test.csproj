@@ -8,6 +8,7 @@
     <WarningsNotAsErrors>xUnit1051</WarningsNotAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
     <TargetFramework>net10.0</TargetFramework>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AsyncFixer">
