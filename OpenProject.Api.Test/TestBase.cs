@@ -4,6 +4,9 @@ using Xunit.Microsoft.DependencyInjection.Abstracts;
 namespace OpenProject.Api.Test;
 
 [Collection("Dependency Injection")]
+// Integration: every class derived from this base calls a live OpenProject instance with credentials
+// from user secrets. CI has neither, so they are excluded there with Category!=Integration.
+[Trait("Category", "Integration")]
 public class TestBase : TestBed<Fixture>
 {
 	protected static System.Threading.CancellationToken CancellationToken => TestContext.Current.CancellationToken;
