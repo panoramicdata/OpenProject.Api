@@ -26,6 +26,11 @@ public class OpenProjectClientOptions
 	public bool LogExceptionContent { get; init; }
 
 	/// <summary>
+	/// When true, the client refuses every request other than GET, HEAD and OPTIONS before sending it.
+	/// </summary>
+	public bool IsReadOnly { get; set; }
+
+	/// <summary>
 	/// Validates that the required options are set.
 	/// </summary>
 	/// <exception cref="ValidationException">Thrown when a required option is missing.</exception>

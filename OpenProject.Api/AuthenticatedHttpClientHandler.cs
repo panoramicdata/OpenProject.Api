@@ -34,6 +34,14 @@ public class AuthenticatedHttpClientHandler : HttpClientHandler
 		HttpRequestMessage request,
 		CancellationToken cancellationToken)
 	{
+		if (_options.IsReadOnly
+			&& request.Method != HttpMethod.Get
+			&& request.Method != HttpMethod.Head
+			&& request.Method != HttpMethod.Options)
+		{
+			throw new InvalidOperationException($"The client is read-only; {request.Method} {request.RequestUri?.AbsolutePath} would change the server.");
+		}
+
 		// Set basic auth header
 		request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"apikey:{_options.ApiKey}")));
 
