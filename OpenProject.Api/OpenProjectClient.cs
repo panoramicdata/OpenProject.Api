@@ -29,6 +29,7 @@ public class OpenProjectClient : IDisposable
 		_httpClient = client;
 		_refitSettings = new RefitSettings
 		{
+			ContentSerializer = new SystemTextJsonContentSerializer(CreateJsonOptions()),
 			//UrlParameterFormatter = new OpenProjectUrlParameterFormatter(),
 		};
 
@@ -57,6 +58,16 @@ public class OpenProjectClient : IDisposable
 		WorkPackages = RefitFor<IWorkPackages>();
 		WorkSchedules = RefitFor<IWorkSchedules>();
 		Types = RefitFor<ITypes>();
+	}
+
+	/// <summary>
+	/// Refit's default JSON options, plus the converter that keeps work-package schedule fields flat on the wire.
+	/// </summary>
+	internal static System.Text.Json.JsonSerializerOptions CreateJsonOptions()
+	{
+		var options = SystemTextJsonContentSerializer.GetDefaultJsonSerializerOptions();
+		options.Converters.Add(new FlatScheduleConverterFactory());
+		return options;
 	}
 
 	private T RefitFor<T>()
