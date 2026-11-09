@@ -1,5 +1,6 @@
 using OpenProject.Api.Data.Models;
 using OpenProject.Api.Data.Models.Create;
+using OpenProject.Api.Data.Models.Update;
 using OpenProject.Api.Queries;
 
 namespace OpenProject.Api.Interfaces.Controllers;
@@ -51,6 +52,18 @@ public interface IWorkPackages
 	[Post("/work_packages")]
 	Task<WorkPackage> CreateAsync(
 		[Body] WorkPackageCreate entity,
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Update a Work Package by ID and return the updated entity
+	/// </summary>
+	/// <param name="id">The work package ID.</param>
+	/// <param name="entity">The fields to change; LockVersion must match the current version.</param>
+	/// <param name="cancellationToken">The cancellation token.</param>
+	[Patch("/work_packages/{id}")]
+	Task<WorkPackage> UpdateAsync(
+		int id,
+		[Body] WorkPackageUpdate entity,
 		CancellationToken cancellationToken);
 
 	/// <summary>
