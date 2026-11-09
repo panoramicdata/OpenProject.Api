@@ -6,7 +6,7 @@ namespace OpenProject.Api.Data.Models;
 /// A work package in OpenProject can basically be everything you need to keep track off within your projects. It can be e.g. a task, a feature, a bug, a risk, a milestone or a project phase.
 /// <para>See <a href='https://www.openproject.org/docs/getting-started/work-packages-introduction/'/></para>
 /// </summary>
-public class WorkPackage : IdentifiedItem<int>, IHasTimestamps
+public class WorkPackage : IdentifiedItem<int>, IHasTimestamps, IHasSchedule
 {
 	/// <summary>
 	/// The version of the item as used for optimistic locking
@@ -27,24 +27,10 @@ public class WorkPackage : IdentifiedItem<int>, IHasTimestamps
 	public Formattable? Description { get; set; }
 
 	/// <summary>
-	/// If false (default) schedule automatically.
+	/// Scheduling and estimate fields: start, due and milestone dates, manual scheduling and estimated time.
 	/// </summary>
-	public bool? ScheduleManually { get; set; }
-
-	/// <summary>
-	/// Scheduled beginning of a work package	
-	/// </summary>
-	public DateTime? StartDate { get; set; }
-
-	/// <summary>
-	/// Scheduled end of a work package
-	/// </summary>
-	public DateTime? DueDate { get; set; }
-
-	/// <summary>
-	/// Date on which a milestone is achieved
-	/// </summary>
-	public DateTime? Date { get; set; }
+	[JsonIgnore]
+	public WorkPackageSchedule Schedule { get; set; } = new();
 
 	/// <summary>
 	/// Similar to start date but is not set by a client but rather deduced by the work packages’ descendants. If manual scheduleManually is active, the two dates can deviate.
@@ -60,16 +46,6 @@ public class WorkPackage : IdentifiedItem<int>, IHasTimestamps
 	/// The amount of time in hours the work package needs to be completed.
 	/// </summary>
 	public string? Duration { get; set; }
-
-	/// <summary>
-	/// Corresponds to work. Time a work package likely needs to be completed.
-	/// </summary>
-	public string? EstimatedTime { get; set; }
-
-	/// <summary>
-	/// Corresponds to total work. Time a work package likely needs to be completed including itself and its descendants.	
-	/// </summary>
-	public string? DerivedEstimatedTime { get; set; }
 
 	/// <summary>
 	/// Corresponds to remaining work. Remaining time a work package likely needs to be completed.
