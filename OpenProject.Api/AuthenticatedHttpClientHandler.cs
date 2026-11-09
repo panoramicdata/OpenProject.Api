@@ -34,29 +34,15 @@ public class AuthenticatedHttpClientHandler : HttpClientHandler
 		HttpRequestMessage request,
 		CancellationToken cancellationToken)
 	{
-		if (_options.IsReadOnly
-			&& request.Method != HttpMethod.Get
-			&& request.Method != HttpMethod.Head
-			&& request.Method != HttpMethod.Options)
+		if (_options.IsReadOnly && !IsRead(request.Method))
 		{
 			throw new InvalidOperationException($"The client is read-only; {request.Method} {request.RequestUri?.AbsolutePath} would change the server.");
 		}
 
-		// Set basic auth header
 		request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"apikey:{_options.ApiKey}")));
 
-		// Get a GUID to uniquely identify the request
 		var guid = Guid.NewGuid();
-		if (_logger?.IsEnabled(LogLevel.Debug) == true)
-		{
-			_logger.LogDebug("{Guid}:{RequestMethod}:{RequestUri}\nHeaders:{Headers}\nBody:{Body}",
-				guid.ToString(),
-				request.Method,
-				request.RequestUri,
-				request.Headers,
-				request.Content is null ? null : await request.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false)
-				);
-		}
+		await LogRequestAsync(guid, request, cancellationToken).ConfigureAwait(false);
 
 		HttpResponseMessage response;
 		try
@@ -71,6 +57,28 @@ public class AuthenticatedHttpClientHandler : HttpClientHandler
 			throw;
 		}
 
+		await LogResponseAsync(guid, request, response, cancellationToken).ConfigureAwait(false);
+		return response;
+	}
+
+	private static bool IsRead(HttpMethod method)
+		=> method == HttpMethod.Get || method == HttpMethod.Head || method == HttpMethod.Options;
+
+	private async Task LogRequestAsync(Guid guid, HttpRequestMessage request, CancellationToken cancellationToken)
+	{
+		if (_logger?.IsEnabled(LogLevel.Debug) == true)
+		{
+			_logger.LogDebug("{Guid}:{RequestMethod}:{RequestUri}\nHeaders:{Headers}\nBody:{Body}",
+				guid.ToString(),
+				request.Method,
+				request.RequestUri,
+				request.Headers,
+				request.Content is null ? null : await request.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
+		}
+	}
+
+	private async Task LogResponseAsync(Guid guid, HttpRequestMessage request, HttpResponseMessage response, CancellationToken cancellationToken)
+	{
 		if (_logger?.IsEnabled(LogLevel.Debug) == true)
 		{
 			_logger.LogDebug("{Guid}:{ResponseStatusCode}:{Body}",
@@ -78,8 +86,6 @@ public class AuthenticatedHttpClientHandler : HttpClientHandler
 				response.StatusCode,
 				request.Content is null ? null : await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
 		}
-
-		return response;
 	}
 
 	/// <summary>
