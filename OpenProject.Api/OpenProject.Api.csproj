@@ -31,6 +31,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Refit" />
+    <PackageReference Include="Refit.Reflection" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.png" />
